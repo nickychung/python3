@@ -1,3 +1,4 @@
+set nu
 set encoding=utf-8
 set nocompatible              " required
 filetype off                  " required
@@ -18,6 +19,9 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 
@@ -31,6 +35,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 " Enable folding
 set foldmethod=indent
@@ -48,6 +53,7 @@ set expandtab
 "colorscheme zenburn
 "colorscheme solarized
 colorscheme rupza
+"colorscheme mayansmoke
 
 let g:jedi#force_py_version = 3
 let python_highlight_all = 1
