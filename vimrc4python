@@ -11,16 +11,16 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
+Plugin 'gmarik/Vundle.vim' "vim package manager
+Plugin 'tmhedberg/SimpylFold' "za folding code
+Plugin 'vim-scripts/indentpython.vim' "vim indentation setting for python
 Plugin 'davidhalter/jedi-vim' "auto-complete plugin, works with let g:jedi
-Plugin 'vim-syntastic/syntastic'
-Plugin 'nvie/vim-flake8'
-Plugin 'jnurmine/Zenburn'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'vim-syntastic/syntastic' "check syntax 
+Plugin 'nvie/vim-flake8' "highlight bad space
+Plugin 'jnurmine/Zenburn' "color scheme
+Plugin 'altercation/vim-colors-solarized' "color scheme
+Plugin 'scrooloose/nerdtree' "directory reader plugin
+Plugin 'jistr/vim-nerdtree-tabs' "use tab to read directory
 
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
