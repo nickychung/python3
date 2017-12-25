@@ -6,7 +6,6 @@ def main():
     a = 3
     print ("a")
     print (os.getcwd())
-
     return 0
 
 main()
