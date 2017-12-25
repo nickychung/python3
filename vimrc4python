@@ -13,14 +13,18 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'davidhalter/jedi-vim'
-
+Plugin 'davidhalter/jedi-vim' "auto-complete plugin, works with let g:jedi
+Plugin 'vim-syntastic/syntastic'
+Plugin 'nvie/vim-flake8'
+Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+call togglebg#map("<F5>")
 filetype plugin indent on    " required
 
 nnoremap <C-J> <C-W><C-J>
@@ -40,4 +44,11 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
 
+"set background=dark
+"colorscheme zenburn
+"colorscheme solarized
+colorscheme rupza
+
 let g:jedi#force_py_version = 3
+let python_highlight_all = 1
+syntax on
