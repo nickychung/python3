@@ -7,7 +7,9 @@ def main():
     print (os.getcwd())
     os.get_terminal_size()
     screenWidth = os.get_terminal_size().columns
-    print ("a".center(screenWidth))
+    screenHeight = os.get_terminal_size().lines
+    for x in range(screenHeight-1):
+        print ("Line:" + repr(x+1))
+    print("Line:" + repr(x+2) + " <EOF>")
     return 0
-
 main()
