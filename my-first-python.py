@@ -11,18 +11,14 @@ def main():
     if(openedFile!=0):
         for line in openedFile:
             print(line)
-    openedFile.close()
+        openedFile.close()
     return 0
 
 def FileOpen():
-    f = open('./test.txt',mode='w')
-    if(f.readable):
+    try:
+        f = open('./test.txt',mode='r+')
         print("Read OK")
         return f
-    else:
+    except FileNotFoundError:
         print("Read Fail")
         return 0
-
-
-
-main()
