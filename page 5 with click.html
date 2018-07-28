@@ -1,0 +1,1544 @@
+<html><head><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache"> 
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+<title>Screen ID: SC-517-1-105</title>
+<link href="/repoes/td-es-app517/css/screen.css" type="text/css" rel="stylesheet">
+<link href="/repoes/td-es-app517/css/adjustment.css" type="text/css" rel="stylesheet">
+<link href="/repoes/td-es-app517/css/print.css" type="text/css" rel="stylesheet" media="print">
+<link href="/repoes/td-es-app517/css/templateCalendar.css" type="text/css" rel="stylesheet">
+<link type="image/x-icon" rel="icon" href="http://www.gov.hk/favicon.ico">
+<link type="image/x-icon" rel="shortcut icon" href="http://www.gov.hk/favicon.ico">
+
+
+
+	
+
+<script type="text/javascript" language="javascript">
+<!--
+	var sessiontimeout = "478";
+	
+	if (sessiontimeout >= 1 * 60 * 25) {	// 1 * 60 * 25 = 25 minutes
+
+		if (parent != null)
+				parent.location.href='/repoes/td-es-app517/Timeout.do';
+			else
+				location.href='/repoes/td-es-app517/Timeout.do';
+	}
+
+// -->
+</script>
+	
+
+<script language="javascript" src="/repoes/td-es-app517/js/common.js" type="text/javascript"></script>
+<script language="javascript" src="/repoes/td-es-app517/js/functionkey.js" type="text/javascript"></script>
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+	
+
+			function formOnLoad()
+			{
+			}
+
+			function onClickDate(year, month, date) {
+
+				UpdateChange();
+
+				frmUpdTSTemplateCalendar.APPOINTMENT_DATE.value = ('0' + date).slice(-2) + '/' + ('0' + month).slice(-2) + '/' + year;
+
+				frmUpdTSTemplateCalendar.findForward.value = "submit_reservasion";
+
+				frmUpdTSTemplateCalendar.action = "RETCalendar.do";
+				frmUpdTSTemplateCalendar.submit();
+			}
+
+			function OnSessionChange(changeType) {
+
+				UpdateChange(changeType);
+
+				frmUpdTSTemplateCalendar.findForward.value = "";
+
+				frmUpdTSTemplateCalendar.action = "RETCalendar.do";
+				frmUpdTSTemplateCalendar.submit();
+			}
+			
+			function UpdateChange(changeType) {
+
+				var deCode = document.getElementById("deCode");
+				frmUpdTSTemplateCalendar.selectedIndex.value = deCode.selectedIndex;
+
+				frmUpdTSTemplateCalendar.DE_CODE.value = deCode.value;
+				frmUpdTSTemplateCalendar.DE_CODE_VALUE.value = deCode.options[deCode.selectedIndex].text;
+				
+				// testPart = testTypeCode
+				var testPart = document.getElementById("hiddenTestPart");
+
+				frmUpdTSTemplateCalendar.TEST_PART.value = testPart.value;
+				frmUpdTSTemplateCalendar.TESTPART_VALUE.value = testPart.options[testPart.selectedIndex].text;
+
+				var testTypeCode = document.getElementById("hiddenTestPart");
+				frmUpdTSTemplateCalendar.TEST_TYPE_CODE.value = testTypeCode.value;
+				frmUpdTSTemplateCalendar.TEST_TYPE_CODE_VALUE.value = testTypeCode.options[testTypeCode.selectedIndex].text;
+
+				var testAreaCode = document.getElementById("testAreaCode");
+				frmUpdTSTemplateCalendar.TEST_AREA_CODE.value = testAreaCode.value;
+				frmUpdTSTemplateCalendar.TEST_CENTRECODE_VALUE.value = testAreaCode.options[testAreaCode.selectedIndex].text;
+
+				var timeslotSession = document.getElementById("timeslotSession");
+				/*
+				frmUpdTSTemplateCalendar.TIMESLOT_SESSION.value = timeslotSession.value;
+				frmUpdTSTemplateCalendar.TIMESLOT_SESSION_VALUE.value = timeslotSession.options[timeslotSession.selectedIndex].text;
+				*/
+
+				// reset session to "ANY" for any vehicle type change
+				if (changeType=="deCode") {
+					var newSession = "ANY";
+					timeslotSession.value = newSession;
+					frmUpdTSTemplateCalendar.TIMESLOT_SESSION.value = newSession;
+					frmUpdTSTemplateCalendar.TIMESLOT_SESSION_VALUE.value = newSession;
+				}
+				else {
+					frmUpdTSTemplateCalendar.TIMESLOT_SESSION.value = timeslotSession.value;
+					frmUpdTSTemplateCalendar.TIMESLOT_SESSION_VALUE.value = timeslotSession.options[timeslotSession.selectedIndex].text;
+				}
+			}
+
+			function onClickBack() {
+
+				document.frmUpdTSTemplateCalendar.action = "#";
+				
+				//if (isSubmitted())
+				//	return;				
+
+				document.frmUpdTSTemplateCalendar.submit();
+			}
+
+			var startCellId = 4
+			var endCellId = 35
+
+			function prevMonth() {
+				var isUpdate = false;
+				for(i = startCellId; i < endCellId; i++) {
+					var cellName = "CalendarCellTable" + i;
+					var cell = document.getElementById(cellName);
+					if(cell.className == "pending-table-cell") {
+						isUpdate = true;
+						break;
+					}
+				}
+				if(isUpdate == true) {
+					if(!confirm("There are un-saved records within this month. Discard Changes?" ))
+						return;
+				}
+			
+				var _year = 2018;
+				var _month = 7;
+
+				if (_month - 1 == 0) {
+					_year--;
+					_month = 12;
+				} else {
+					_month--;
+				}
+
+				document.frmUpdTSTemplateCalendar.currYear.value = _year;
+				document.frmUpdTSTemplateCalendar.currMonth.value = _month;
+
+				UpdateChange();
+				frmUpdTSTemplateCalendar.findForward.value = "";
+
+				document.frmUpdTSTemplateCalendar.action = "RETCalendar.do";
+				document.frmUpdTSTemplateCalendar.submit();
+			}
+
+			function nextMonth() {
+				var isUpdate = false;
+				for(i = startCellId; i < endCellId; i++) {
+					var cellName = "CalendarCellTable" + i;
+					var cell = document.getElementById(cellName);
+					
+					if(cell.className == "pending-table-cell") {
+						isUpdate = true;
+						break;
+					}
+				}
+			
+				if(isUpdate == true) {
+					if(!confirm("There are un-saved records within this month. Discard Changes?" ))
+						return;
+				}
+						
+						
+				var _year = 2018;
+				var _month = 7;
+				if (_month + 1 > 12) {
+					_year++;
+					_month = 1;
+				} else {
+					_month++;
+				}
+				document.frmUpdTSTemplateCalendar.currYear.value = _year;
+				document.frmUpdTSTemplateCalendar.currMonth.value = _month;
+
+				UpdateChange();
+				frmUpdTSTemplateCalendar.findForward.value = "";
+
+				document.frmUpdTSTemplateCalendar.action = "RETCalendar.do";
+				document.frmUpdTSTemplateCalendar.submit();
+			}
+
+	
+	var stepNo = 2;
+	
+	var isSubmitted = false;
+	var openedWindows = new Array();
+	var idleTimer = null;
+	
+	document.oncontextmenu=new Function("return false");
+	
+	function openFAQ(){
+		window.open('/repoes/faq/app517/zh/faqMenu.html','faq','height='+(window.screen.height - 70)+',width='+window.screen.width+',toolbar=no,scrollbars=yes,resizable=yes,menubar=no');
+	}
+	
+	function openwin(href, name){
+/*		var win = null;
+		if (openedWindows[name] == null) {
+			win = window.open(href, name,'height=400,width=700,toolbar=yes,scrollbars=yes,resizable=yes,menubar=yes,location=yes');
+			openedWindows[name] = win;
+		}
+		else {
+			win = openedWindows[name];
+			win.location.href = href;
+		}
+*/
+		var win = window.open(href, name,'height=400,width=700,toolbar=yes,scrollbars=yes,resizable=yes,menubar=yes,location=yes');
+		win.focus();
+	}
+	
+	function checkSubmitted() {
+		if (!isSubmitted)
+		{
+			isSubmitted = true;
+			return true;
+		}
+		else 
+			return false;
+	}
+	
+	function idleTimeout() {
+		if (parent != null)
+			parent.location.href='/repoes/td-es-app517/Timeout.do';
+		else
+			location.href='/repoes/td-es-app517/Timeout.do';
+	}
+	
+	function closeW() {
+		if (parent != null)
+			parent.location.href='/repoes/td-es-app517/Exit.do';
+		else
+			location.href='/repoes/td-es-app517/Exit.do';
+	}
+	
+	function bodyLoad() {
+		
+		idleTimer = window.setTimeout("idleTimeout()", 1000 * 60 * 15);
+		
+		
+		formOnLoad();
+	
+		
+		var footerString="<strong>第 {0}</strong>/ 5 步";
+		var frame = parent.frames["javascript_container"];
+		
+		//if (frame == null)
+		//	location.href = '/checkclientconfig/checkClientConfig.jsp?applicationId=TD514&language=en';
+		
+		if (stepNo > 0) {
+			var stepRow = document.getElementById("step" + stepNo + "Row");
+			if (stepRow != null)
+				stepRow.className = "stepBoxSelected";
+			var stepFooter = document.getElementById("stepsOf");
+			if (stepFooter != null)
+				stepFooter.innerHTML = footerString.replace("{0}", stepNo);
+				
+			/* set the step header */
+			var stepsHeader = document.getElementById("stepsHeader");
+			if (stepsHeader != null)
+			{
+				var stepTitleNo = "";
+				var stepTitle   = "";
+				var mandatoryRequired = false;
+				switch (stepNo)
+					{
+						case 1:
+						  stepTitleNo = "步驟一";
+						  stepTitle   = "身份核實";
+						  mandatoryRequired = true;
+						  break;
+						case 2:
+						  stepTitleNo = "步驟二";
+						  stepTitle   = "選擇車輛類別、應考地區、考試時段及考試日期";
+						  mandatoryRequired = false;
+						  break;
+						case 3:
+						  stepTitleNo = "步驟三";
+						  stepTitle   = "提交預約申請";
+						  mandatoryRequired = false;
+						  break;
+						case 4:
+						  stepTitleNo = "步驟四";
+						  stepTitle   = "付款";
+						  mandatoryRequired = false;
+						  break;
+						case 5:
+						  stepTitleNo = "步驟五";
+						  stepTitle   = "印取排期信";
+						  mandatoryRequired = false;
+						  break;
+						default:
+						  stepTitleNo = "";
+						  stepTitle   = "";
+					}
+				
+				
+				if (stepTitleNo != ""){
+					if (mandatoryRequired==true){
+						stepsHeader.innerHTML = "<div class=\"cell\">"+
+												"	<div class=\"contenttable\"> " +
+												"		<div class=\"step_hd\"> " +
+												"			<span class=\"step_no\">" + stepTitleNo + "</span> " +
+												"			<span class=\"step_info\"> " + stepTitle + "</span> " +
+												"			<span class=\"step_remark\"> 註有「<span class=\"star\">*</span>」號必須填寫 </span> " +
+												"		</div> " +
+												"	</div> " +
+										        "</div>";
+					}else{
+						stepsHeader.innerHTML = "<div class=\"cell\">"+
+												"	<div class=\"contenttable\"> " +
+												"		<div class=\"step_hd\"> " +
+												"			<span class=\"step_no\">" + stepTitleNo + "</span> " +
+												"			<span class=\"step_info\"> " + stepTitle + "</span> " +
+												"		</div> " +
+												"	</div> " +
+										        "</div>";
+					}
+				}
+			}
+			/* end set the step header */
+		}
+		
+		var inputs = document.getElementsByTagName("input");
+			
+		for (i = 0; i < inputs.length; i++) {
+			inputs[i].setAttribute("autocomplete", "off");
+			inputs[i].autocomplete = "off";
+		}
+		
+		parent.document.title = "Screen ID: SC-517-1-105";
+	}
+	
+// -->
+</script>
+<style type="text/css">
+* {
+	font-family:DFSongStd,PMingLiU,MingLiU,LiSong Pro,Serif ;
+}
+#topPanel {
+	text-align: left;
+	width:100%; height:27px;
+	margin-bottom: 20px;
+	margin-top:38px;
+	vertical-align:bottom;
+}
+#contentPanelFloat {
+	min-height: 610px;
+	background-image: url("/repoes/td-es-app517/images/bottom_border.jpg");
+}
+</style>
+</head>
+<body onload="javascript:bodyLoad();" marginwidth="0" marginheight="0">
+<div id="wrap">
+	<div id="topPanel" class="screenOnly">
+  		<div id="headerFlag"><img src="/repoes/td-es-app517/images/header.jpg" alt="GovHK 香港政府一站通"></div>
+    	<div id="navigationBar"><a href="/repoes/td-es-app517/Exit.do" target="_parent">離開</a></div>
+		<div id="headerRight"></div>
+	</div>
+		
+<!-- Modified by Eric Ng on Nov 8, 2012 - Bug Fix for Chrome Start -->
+	<div class="printOnly">
+        預約駕駛考試
+	</div>
+	
+<div id="subheader2" class="screenOnly">
+	<div class="subheader">
+        <div class="cluster">&nbsp;</div>
+        <div class="icon"><img src="./images/transport.jpg" alt="" class="icon"></div>
+        <div class="text">預約駕駛考試</div>
+	</div>	
+</div>
+<!-- Modified by Eric Ng on Nov 8, 2012 - Bug Fix for Chrome End -->
+	
+<!--<div id="midPanel" class="clearfix">-->
+        <div id="leftMenuPanel" class="screenOnly">
+            <div class="leftMenuSubPanel">
+                <div class="leftMenuPanelDimBox">
+                	
+<!-- left 步驟menu begin -->
+			<div class="leftMenuTitleSteps">
+                    <div id="step1Row" class="stepBoxNotSelected">
+                        <h2>步驟一</h2>
+                        身份核實
+                    </div>
+					<div id="step2Row" class="stepBoxSelected">
+                        <h2>步驟二</h2>
+			                   選擇車輛類別、應考地區、考試時段及考試日期
+                    </div>
+					<div id="step3Row" class="stepBoxNotSelected">
+                        <h2>步驟三</h2>
+                        	提交預約申請
+                    </div>
+					<div id="step4Row" class="stepBoxNotSelected">
+                        <h2>步驟四</h2>
+                      		 付款
+                    </div>
+					<div id="step5Row" class="stepBoxNotSelected">
+                        <h2>步驟五</h2>
+                       	印取排期信
+                    </div>
+			</div>
+<!-- left 步驟menu end -->
+                	
+<!-- left menu begins -->
+                   <div class="leftMenuTitle">
+                       <h2><a href="#" onclick="openwin('/repoes/demo/app517/zh/OnlineDemo.html', 'demo'); return false;">預覽示範</a></h2>
+                   </div>
+                   <div class="leftMenuTitle">
+                       <h2>
+            <a class="heading" href="#" onclick="openFAQ(); return false;">           
+                       常見問題</a></h2>
+                   </div>
+                   <div class="leftMenuTitle2">
+                       <h2>申請說明</h2>
+                       <h2>
+					<a href="#" onclick="javascript:openwin('http://www.td.gov.hk/tc/public_services/licences_and_permits/driving_test/index.html', 'how'); return false;">如何申請</a>
+                   		</h2>
+                   </div>
+                  	<div class="leftMenuTitle2">
+                  	<h2>查詢</h2>
+                       	請致電<span class="note fontArial">1823</span>或發送電郵至<br>
+					<a href="mailto:tellme@1823.gov.hk" rel="external" title="Contact Us" class="email">
+				tellme@1823.gov.<br>hk
+				</a>
+					</div>
+
+<!-- left menu ends -->
+                </div>
+            </div>
+        </div>
+        <div id="contentPanelFloat">
+            <div id="contentPanelFix">
+                <div id="contentPanel">
+                    
+                    <div id="stepsHeader" class="screenOnly"><div class="cell">	<div class="contenttable"> 		<div class="step_hd"> 			<span class="step_no">步驟二</span> 			<span class="step_info"> 選擇車輛類別、應考地區、考試時段及考試日期</span> 		</div> 	</div> </div></div>
+                    
+					
+		<form name="frmUpdTSTemplateCalendar" method="post">
+			<div id="tooltip" style="position:absolute;visibility:hidden"></div>
+			<input type="hidden" name="mode" value="N" autocomplete="off">
+			<input type="hidden" name="currYear" value="2018" autocomplete="off">
+			<input type="hidden" name="currMonth" value="7" autocomplete="off">
+			<input type="hidden" name="startCellId" value="4" autocomplete="off">
+			<input type="hidden" name="endCellId" value="35" autocomplete="off">
+
+			<input type="hidden" name="findForward" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="retasAppointmentDate" value="" scope="request" ignore="true" autocomplete="off">
+
+			<input type="hidden" name="idType" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="retCertType" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="hkid1" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="hkid2" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="hkid" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="checkDigit" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="passport" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="brn" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="ci" value="" scope="request" ignore="true" autocomplete="off">
+
+			<input type="hidden" name="DE_CODE" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="DE_CODE_VALUE" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="TEST_PART" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="TESTPART_VALUE" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="TEST_TYPE_CODE" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="TEST_TYPE_CODE_VALUE" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="TEST_AREA_CODE" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="TEST_CENTRECODE_VALUE" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="LAST_ATTEMPT_TEST_FORM_NO" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="DATE_OF_BIRTH" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="LAST_ATTEMPT_DATE" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="TIMESLOT_SESSION" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="TIMESLOT_SESSION_VALUE" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="APPOINTMENT_DATE" value="" scope="request" ignore="true" autocomplete="off">
+
+			<input type="hidden" name="selectedIndex" value="" scope="request" ignore="true" autocomplete="off">
+			
+				<input type="hidden" name="cf9f8b7b68db4937b013db9d0fe145fc" value="b72a28c646f8436eaf3c8e7883539c94" autocomplete="off">
+			
+						
+			
+				<input type="hidden" name="ca0628e66caa43a18f4270da7563aef8" value="6f66df02f8fa4c22bc8a03a5f51118b3" autocomplete="off">
+			
+
+			
+
+		<div class="formPanel">
+
+		<div class="cell">
+		<div class="pageTitle">預約重考生快期</div>
+		<div class="contenttable">
+		<div class="formContent">
+			<table class="formTable">
+				<tbody><tr>
+					<td width="100%" class="form-content">
+						<table border="0" cellspacing="0" cellpadding="5" width="98%">
+							<tbody><tr>
+								<td colspan="2" align="right">
+									<span class="bold">今天是<span class="span_today">&nbsp;2018年7月25日</span></span>
+								</td>
+							</tr>
+
+							<tr>
+								<td width="230px">
+									車輛類別
+								</td>
+								<td width="*">
+									<select name="deCode" id="deCode" onchange="javascript:OnSessionChange('deCode')">
+										<option selected="" value="01">私家車</option>
+									</select>
+								</td>
+							</tr>
+							
+							<tr id="testPartInputRow">
+								<td width="230px">應考部份</td>
+								
+								<td width="*">
+									<select class="select_as_label" name="hiddenTestPart" id="hiddenTestPart" disabled="disabled" style="display:none">
+										<option selected="" value="C">丙部試</option>
+									</select>
+									丙部試
+								</td>
+							</tr>
+							
+							<tr id="testCenterInputRow">
+								<td width="230px">應考地區</td>
+								<td width="*">
+									 <select name="testAreaCode" id="testAreaCode" onchange="javascript:OnSessionChange('')">
+										<option value="1">香港</option><option selected="" value="2">九龍及新界</option>
+									</select>
+								</td>
+							</tr>                
+
+							<tr id="selectSessionInputRow">
+								<td width="230px">考試時段</td>
+								<td width="*">
+									 <select name="timeslotSession" id="timeslotSession" onchange="javascript:OnSessionChange('')">
+										<option value="ANY">任何時段</option><option value="08:30 - 10:30">08:30 - 10:30</option><option value="10:31 - 12:30">10:31 - 12:30</option><option value="14:00 - 16:30">14:00 - 16:30</option>
+									</select>
+								</td>
+							</tr>                
+						</tbody></table>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+		<br>
+		</div>
+		</div>
+		</div>
+		<!-- calendar -->
+		<div class="cell">
+		<div class="contenttable">
+		<div class="formContent">
+		<table>
+			<tbody><tr valign="top">
+				<td>
+				<table align="center" class="result-table">
+					<tbody><tr>
+						<td>
+						<table class="calender-table" cellspacing="0">
+						 	<tbody><tr class="calendar-table-header">
+								<td colspan="7">
+									<table width="100%">
+									<tbody><tr>
+										<td colspan="2" class="calendar-table-header" width="30%" align="left">
+											
+												<a href="#" class="link6" onclick="prevMonth();">&lt;&lt;2018年7月</a>
+											
+											&nbsp;
+										</td>
+										<td colspan="3" class="calendar-table-header" width="40%" align="center">
+											&nbsp;
+										</td>
+										<td colspan="2" class="calendar-table-header" width="30%" align="right">
+											
+											
+												*2018年9月&gt;&gt;
+																						
+											&nbsp;
+										</td>
+									</tr>
+									</tbody></table>
+								</td>
+							</tr>
+							<tr class="formTitle">
+								<td colspan="7" align="center">
+									<div class="div_formTitle"><table class="table_formTitle" border="0" align="center"><tbody><tr><td><b>2018年8月</b></td></tr></tbody></table></div>
+								</td>
+							</tr>
+							<tr>
+								<td class="calendar-table-cell"><font class="sunday-title-color">日</font></td>
+								<td class="calendar-table-cell"><font class="workday-title-color">一</font></td>
+								<td class="calendar-table-cell"><font class="workday-title-color">二</font></td>
+								<td class="calendar-table-cell"><font class="workday-title-color">三</font></td>
+								<td class="calendar-table-cell"><font class="workday-title-color">四</font></td>
+								<td class="calendar-table-cell"><font class="workday-title-color">五</font></td>
+								<td class="calendar-table-cell"><font class="workday-title-color">六</font></td>
+							</tr>
+								
+							<tr>
+								
+								<td class="calendar-table-cell">
+									<table border="0" class="calendar-inner-table" name="CalendarCellTable" id="CalendarCellTable1">
+										<tbody><tr>
+											<td height="10%" align="left" valign="top"></td>
+										</tr>
+										<tr>
+											<td height="90%" align="right" valign="bottom"></td>
+										</tr>
+									</tbody></table>
+								</td>
+									
+								<td class="calendar-table-cell">
+									<table border="0" class="calendar-inner-table" name="CalendarCellTable" id="CalendarCellTable2">
+										<tbody><tr>
+											<td height="10%" align="left" valign="top"></td>
+										</tr>
+										<tr>
+											<td height="90%" align="right" valign="bottom"></td>
+										</tr>
+									</tbody></table>
+								</td>
+									
+								<td class="calendar-table-cell">
+									<table border="0" class="calendar-inner-table" name="CalendarCellTable" id="CalendarCellTable3">
+										<tbody><tr>
+											<td height="10%" align="left" valign="top"></td>
+										</tr>
+										<tr>
+											<td height="90%" align="right" valign="bottom"></td>
+										</tr>
+									</tbody></table>
+								</td>
+									
+								<td class="calendar-table-cell" name="CalendarCellTable4" id="CalendarCellTable4">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											1 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel4"
+													id="CalendarBlockLabel4">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel4" 
+													id="CellLabel4">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable5" id="CalendarCellTable5">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											2 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel5"
+													id="CalendarBlockLabel5">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel5" 
+													id="CellLabel5">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable6" id="CalendarCellTable6">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											3 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel6"
+													id="CalendarBlockLabel6">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel6" 
+													id="CellLabel6">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable7" id="CalendarCellTable7">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											4 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel7"
+													id="CalendarBlockLabel7">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel7" 
+													id="CellLabel7">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+							</tr>
+							
+							<tr>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable8" id="CalendarCellTable8">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											<font class="sunday-title-color">5</font> 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel8"
+													id="CalendarBlockLabel8">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel8" 
+													id="CellLabel8">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable9" id="CalendarCellTable9">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											6 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel9"
+													id="CalendarBlockLabel9">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel9" 
+													id="CellLabel9">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable10" id="CalendarCellTable10">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											7 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel10"
+													id="CalendarBlockLabel10">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel10" 
+													id="CellLabel10">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable11" id="CalendarCellTable11">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											<b><a href="#" class="link7" onclick="onClickDate('2018','8','8')">8</a></b> 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel11"
+													id="CalendarBlockLabel11">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel11" 
+													id="CellLabel11">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable12" id="CalendarCellTable12">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											9 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel12"
+													id="CalendarBlockLabel12">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel12" 
+													id="CellLabel12">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable13" id="CalendarCellTable13">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											10 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel13"
+													id="CalendarBlockLabel13">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel13" 
+													id="CellLabel13">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable14" id="CalendarCellTable14">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											11 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel14"
+													id="CalendarBlockLabel14">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel14" 
+													id="CellLabel14">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+							</tr>
+							
+							<tr>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable15" id="CalendarCellTable15">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											<font class="sunday-title-color">12</font> 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel15"
+													id="CalendarBlockLabel15">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel15" 
+													id="CellLabel15">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable16" id="CalendarCellTable16">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											13 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel16"
+													id="CalendarBlockLabel16">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel16" 
+													id="CellLabel16">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable17" id="CalendarCellTable17">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											14 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel17"
+													id="CalendarBlockLabel17">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel17" 
+													id="CellLabel17">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable18" id="CalendarCellTable18">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											15 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel18"
+													id="CalendarBlockLabel18">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel18" 
+													id="CellLabel18">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable19" id="CalendarCellTable19">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											16 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel19"
+													id="CalendarBlockLabel19">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel19" 
+													id="CellLabel19">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable20" id="CalendarCellTable20">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											17 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel20"
+													id="CalendarBlockLabel20">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel20" 
+													id="CellLabel20">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable21" id="CalendarCellTable21">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											18 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel21"
+													id="CalendarBlockLabel21">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel21" 
+													id="CellLabel21">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+							</tr>
+							
+							<tr>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable22" id="CalendarCellTable22">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											<font class="sunday-title-color">19</font> 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel22"
+													id="CalendarBlockLabel22">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel22" 
+													id="CellLabel22">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable23" id="CalendarCellTable23">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											20 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel23"
+													id="CalendarBlockLabel23">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel23" 
+													id="CellLabel23">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable24" id="CalendarCellTable24">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											21 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel24"
+													id="CalendarBlockLabel24">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel24" 
+													id="CellLabel24">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable25" id="CalendarCellTable25">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											22 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel25"
+													id="CalendarBlockLabel25">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel25" 
+													id="CellLabel25">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable26" id="CalendarCellTable26">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											23 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel26"
+													id="CalendarBlockLabel26">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel26" 
+													id="CellLabel26">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable27" id="CalendarCellTable27">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											24 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel27"
+													id="CalendarBlockLabel27">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel27" 
+													id="CellLabel27">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable28" id="CalendarCellTable28">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											25 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel28"
+													id="CalendarBlockLabel28">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel28" 
+													id="CellLabel28">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+							</tr>
+							
+							<tr>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable29" id="CalendarCellTable29">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											<font class="sunday-title-color">26</font> 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel29"
+													id="CalendarBlockLabel29">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel29" 
+													id="CellLabel29">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable30" id="CalendarCellTable30">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											27 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel30"
+													id="CalendarBlockLabel30">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel30" 
+													id="CellLabel30">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable31" id="CalendarCellTable31">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											28 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel31"
+													id="CalendarBlockLabel31">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel31" 
+													id="CellLabel31">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable32" id="CalendarCellTable32">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											29 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel32"
+													id="CalendarBlockLabel32">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel32" 
+													id="CellLabel32">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable33" id="CalendarCellTable33">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											30 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel33"
+													id="CalendarBlockLabel33">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel33" 
+													id="CellLabel33">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell" name="CalendarCellTable34" id="CalendarCellTable34">
+								<table border="0" class="inner-table">
+									<tbody><tr>
+										<td valign="top" class="inner-table-cell" height="10%" align="left">
+											31 
+										</td>
+									</tr>
+									<!-- <tr>
+										<td valign="top" class="inner-table-cell" height="30%" align="left">
+											<label name="CalendarBlockLabel34"
+													id="CalendarBlockLabel34">
+											</label>
+										</td>
+									</tr>
+									<tr>
+										<td valign="bottom" class="inner-table-cell" height="60%" align="right">
+												<label name="CellLabel34" 
+													id="CellLabel34">
+													
+												</label>
+										</td>
+									</tr> -->
+								</tbody></table>
+								</td>
+								
+								<td class="calendar-table-cell">
+									<table border="0" class="calendar-inner-table" name="CalendarCellTable" id="CalendarCellTable35">
+										<tbody><tr>
+											<td height="10%" align="left" valign="top"></td>
+										</tr>
+										<tr>
+											<td height="90%" align="right" valign="bottom"></td>
+										</tr>
+									</tbody></table>
+								</td>
+									
+							</tr>
+							
+						</tbody></table>
+						</td>
+					</tr>
+				</tbody></table>
+				<br>
+				</td>
+				</tr>
+		</tbody></table>
+
+		</div>
+		</div>
+		</div>
+		</form>
+<!-- 
+		<div>
+			請選擇帶下劃線的日期
+		</div>
+ -->
+		<div class="pointsToNote2">
+			<span class="note">
+				<div class="hightitle">注意事項:</div><br>
+				<ol>
+					<li>請選擇車輛類別(如適用)、應考地區(不適用於重型貨車及掛接車輛)及考試時段。</li>
+					<li>請選擇考試日期。(可供選擇的考試日期已用粗體和底線標示。)</li>
+					<li>系統將根據你選擇的應考地區、考試時段及考試日期隨機分配一個考期及考試地點。</li>
+					<li>可供預約的重考生快期空缺會於每日上午7時30分更新。重考生可以由申請日後的第7個工作天至30個工作天內的重考生快期空缺，請盡快作出選擇及完成申請。</li>
+					<li>重考生快期不能轉讓。</li>
+					<li>每位重考生只能就每個合資格申請重考生快期的車輛類別中申請一個重考生快期。</li>
+					<li>私家車或輕型貨車合併試考生若取得乙部試及格，只可申請丙部試重考生快期；若取得丙部試及格，只可申請乙部試重考生快期；若兩部份皆不及格，則只可申請合併試重考生快期。</li>
+					<li>*系統會顯示你登入系統時的本月月曆（如該月空缺已全數被預約，你會無法選擇任何日期）；如你未能按連結至下月，表示現時沒有下兩個月/下月可運用的重考生快期空缺。</li>										
+				</ol>
+			</span>
+		</div>
+		<br>
+	
+	                    
+	                
+		<div class="buttonPanel screenOnly clearfix">
+			
+				<div class="item">
+					<a href="/repoes/td-es-app517/RETInputVehDetailsBack.do?org.apache.struts.taglib.html.TOKEN=133bda444f49179e00714640f500b717" class="greybutton">返回</a>
+				</div>
+			
+		</div>
+	
+
+                    <div id="stepsOf" class="stepof screenOnly"><strong>第 2</strong>/ 5 步</div>
+                </div>
+            </div>
+        </div>
+<!--</div>-->
+    <div id="bottomPanel" class="screenOnly">
+	    
+
+<!-- footer begin -->
+<div id="footerLeft">
+  	<ul>
+    	<li class="navItem"><a href="#" onclick="openwin('http://www.gov.hk/tc/about/aboutus.htm', 'copyright'); return false;">關於「香港政府一站通」</a></li>
+        <li class="navItem"><a href="#" onclick="openwin('http://www.gov.hk/tc/about/copyright.htm', 'copyright'); return false;">版權告示</a></li>
+        <li class="navItem"><a href="#" onclick="openwin('http://www.gov.hk/tc/about/privacy.htm', 'privacy'); return false;">私隱政策</a></li>
+        <li class="lastItem"><a href="#" onclick="openwin('http://www.gov.hk/tc/about/disclaimer.htm', 'disclaimer'); return false;">免責聲明</a></li>
+    </ul>
+	<div class="triangle">&nbsp;</div>
+</div>
+<div id="footerRight"><a href="http://www.brandhk.gov.hk/" target="_blank"><img src="/repoes/td-es-app517/images/logo_footer_tc.gif" title="香港品牌" alt="香港品牌"></a></div>
+<!-- footer end -->	
+
+
+
+	
+
+<script type="text/javascript" language="javascript">
+<!--
+	var sessiontimeout = "478";
+	
+	if (sessiontimeout >= 1 * 60 * 25) {	// 1 * 60 * 25 = 25 minutes
+
+		if (parent != null)
+				parent.location.href='/repoes/td-es-app517/Timeout.do';
+			else
+				location.href='/repoes/td-es-app517/Timeout.do';
+	}
+
+// -->
+</script>
+	
+	</div>
+</div>
+
+
+
+
+
+
+</body></html>

@@ -1,0 +1,2095 @@
+<html><head><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache"> 
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+<title>Screen ID: SC-517-1-103</title>
+<link href="/repoes/td-es-app517/css/screen.css" type="text/css" rel="stylesheet">
+<link href="/repoes/td-es-app517/css/adjustment.css" type="text/css" rel="stylesheet">
+<link href="/repoes/td-es-app517/css/print.css" type="text/css" rel="stylesheet" media="print">
+<link href="/repoes/td-es-app517/css/templateCalendar.css" type="text/css" rel="stylesheet">
+<link type="image/x-icon" rel="icon" href="http://www.gov.hk/favicon.ico">
+<link type="image/x-icon" rel="shortcut icon" href="http://www.gov.hk/favicon.ico">
+
+
+
+	
+
+<script type="text/javascript" language="javascript">
+<!--
+	var sessiontimeout = "50";
+	
+	if (sessiontimeout >= 1 * 60 * 25) {	// 1 * 60 * 25 = 25 minutes
+
+		if (parent != null)
+				parent.location.href='/repoes/td-es-app517/Timeout.do';
+			else
+				location.href='/repoes/td-es-app517/Timeout.do';
+	}
+
+// -->
+</script>
+	
+
+<script language="javascript" src="/repoes/td-es-app517/js/common.js" type="text/javascript"></script>
+<script language="javascript" src="/repoes/td-es-app517/js/functionkey.js" type="text/javascript"></script>
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+	
+		var jsFrame = parent.frames["javascript_container"];
+		var dllFileName;
+		var buttonPressed = false;
+	
+		function formOnLoad() {
+			var f = document.forms[0];
+			var submitForm = document.forms[1];
+
+			/*
+			// default with e-cert
+			if (submitForm.retCertType.value=="null" || submitForm.retCertType.value=="" || submitForm.retCertType.value=="withCert") {
+				jsFrame.setRadioButton(f.RETCertType, "withCert");
+			}
+			else {
+				jsFrame.setRadioButton(f.RETCertType, "withoutCert");
+
+				if (submitForm.retCertType.value=="authenticateByTestForm") {
+					jsFrame.setRadioButton(f.rbAuthenticateBy, "authenticateByTestForm");
+				} else if (submitForm.retCertType.value=="authenticateByID"){
+					jsFrame.setRadioButton(f.rbAuthenticateBy, "authenticateByID");
+				}	
+			}
+			*/
+
+			var rCertType = submitForm.retCertType.value;
+			var iRETCertType = "withoutCert";
+			// default without e-cert
+			if (iRETCertType=="withCert") {
+			var rCertType ="withCert";
+				jsFrame.setRadioButton(f.RETCertType, "withCert");
+			}
+			else {
+				jsFrame.setRadioButton(f.RETCertType, "withoutCert");
+
+				if (rCertType=="authenticateByTestForm") {
+					jsFrame.setRadioButton(f.rbAuthenticateBy, "authenticateByTestForm");
+				} else if (rCertType=="authenticateByID"){
+					jsFrame.setRadioButton(f.rbAuthenticateBy, "authenticateByID");
+				}	
+			}
+
+			// toggle display of with/without Digital Certificate <DIV>
+			changeAuthenticateForm(f, false);
+
+			// For authentication without Digital Certificate, select authenticate by (Test Form No) or by (ID Document)
+
+			var rbAuthenticateBy = "";
+
+			if(submitForm.retCertType.value!="authenticateByTestForm" && submitForm.retCertType.value!="authenticateByID"){
+				if (rbAuthenticateBy=="null" || rbAuthenticateBy=="") {
+					jsFrame.setRadioButton(f.rbAuthenticateBy, "authenticateByTestForm");	// default value
+				}
+				else {
+					jsFrame.setRadioButton(f.rbAuthenticateBy, rbAuthenticateBy);
+				}
+			}
+			// toggle display of authenticate by (TEST Form No) or by (ID Document) <DIV>
+			changeAuthenticateType(f, false);
+
+			jsFrame.setRadioButton(f.IDType, submitForm.idType.value);
+
+			if (submitForm.hkid.value != "null" && submitForm.hkid.value.length > 6) {
+				var hkid = submitForm.hkid.value;
+				
+				f.hkid1.value = hkid.substr(0, hkid.length - 6);
+				f.hkid2.value = hkid.substr(hkid.length - 6);
+				jsFrame.setRadioButton(f.IDType, "HKID");
+				
+			}
+			
+			if (submitForm.hkid1.value != "null" && submitForm.hkid1.value != "") {
+				f.hkid1.value = submitForm.hkid1.value;
+				
+			}
+			if (submitForm.hkid2.value != "null" && submitForm.hkid2.value != "") {
+				f.hkid2.value = submitForm.hkid2.value;
+				
+			}
+			if (submitForm.checkDigit.value != "null" && submitForm.checkDigit.value != "") {
+				f.hkidCheckDigit.value = submitForm.checkDigit.value;
+				
+			}
+			if(submitForm.certPath.value != "null"){
+				f.filename.value = jsFrame.trimStr(submitForm.certPath.value);
+			}
+			
+			if ((submitForm.passport.value != "null" && submitForm.passport.value != "") || (submitForm.hkid.value != "null" && submitForm.hkid.value != ""))
+				jsFrame.setRadioButton(f.certificateType, "PERSONAL");
+			else if (submitForm.ci.value != "null" && submitForm.ci.value != "")
+				jsFrame.setRadioButton(f.certificateType, "ORGANIZATIONAL");
+			
+			if (submitForm.passport.value != "null" && submitForm.passport.value != "") {
+				f.passportID.value = submitForm.passport.value;
+				jsFrame.setRadioButton(f.IDType, "PASSPORT");
+			}
+
+			// display id example block
+			ChangeSelectIdType(f)
+		}
+		function moveOnMax(field,nextFieldID){
+  			if(field.value.length >= field.maxLength){
+   				 document.getElementById(nextFieldID).focus();
+  			}
+		}
+		function clearForm1(frm) {
+			if (frm != null) {
+		
+				//frm.reset();
+				for (var i = 0; i < frm.elements.length; i++)
+				{
+					var frmType = frm.elements[i].type;
+					var readOnly = frm.elements[i].readOnly;
+		
+					if ((frmType == "text" && !readOnly) || frmType == "textarea" || frmType == "password")
+					{
+						frm.elements[i].value = "";
+					}
+					//else if (frmType == "checkbox" || frmType == "radio")
+					
+					else if (frmType.indexOf("select") > -1&& frm.elements[i][0] != null)
+					{
+						frm.elements[i][0].selected = true;
+					}
+				}
+		
+				// set to default radio after clear fields
+		
+				var retCertType = jsFrame.getRadioButton(frm.RETCertType);
+		
+				if (retCertType == "withCert") {
+				
+					// clear all radio
+					document.forms[0].IDType[0].checked = false;
+					document.forms[0].IDType[1].checked = false;
+				}
+				else {
+					/*
+					// default to Authenticate by TestForm No. for Last Attempt
+					document.forms[0].rbAuthenticateBy[0].checked = true;
+					document.forms[0].rbAuthenticateBy[1].checked = false;
+					*/
+
+					// reset(hidden) id example block
+					document.getElementById("id_example").style.display = 'none';	
+				}
+			}
+		}
+
+		function isDigit(n) {
+			if((n >= "0") && (n <= "9")) return true;
+			else return false;
+		} 
+
+		function changeCertificateType(f)
+		{
+			var certificateType = jsFrame.getRadioButton(f.certificateType);
+
+			var supportPersonalCertificate = true;
+			var supportMultipleCertificateType = false;
+			var supportOrganizationalCertificate = false;
+			var supportBRN = false;
+			var supportCI = false;
+			var supportHKID = true;
+			var supportPassportID = true;
+
+			if (supportPersonalCertificate) {
+
+				if (certificateType != "PERSONAL") {
+
+					if (supportHKID) {
+						f.hkid.value = "";
+						f.hkid1.value = "";
+						f.hkid2.value = "";
+						f.hkidCheckDigit.value = "";
+					}
+
+					if (supportPassportID) {
+						f.passportID.value = "";
+
+						if (supportHKID) {
+							for (var i = 0; i < f.IDType.length; i++)
+								f.IDType[i].checked = false;
+						}
+					}
+					
+					jsFrame.setRadioButton(f.certMedia, "PKCS12");
+					var pwdField = document.getElementById("pwdField");
+					pwdField.style.display = "block";
+				}
+			}
+
+			if (supportOrganizationalCertificate && supportBRN) {
+				if (certificateType != "ORGANIZATIONAL")
+					f.brn.value = "";
+			}
+			
+			//added for ci
+			if (supportOrganizationalCertificate && supportCI) {
+				if (certificateType != "ORGANIZATIONAL")
+					f.ci.value = "";
+			}
+		}
+
+		function changeIDType(f)
+		{
+			var supportMultipleCertificateType = false;
+			var supportOrganizationalCertificate = false;
+			var supportBRN = false;
+			var supportCI = false;
+		
+			if (supportMultipleCertificateType) jsFrame.setRadioButton(f.certificateType, "PERSONAL");
+			if (supportOrganizationalCertificate && supportBRN) f.brn.value = "";
+			if (supportOrganizationalCertificate && supportCI) f.ci.value = "";
+
+			var idType = jsFrame.getRadioButton(f.IDType);
+
+			if (idType == "HKID") f.passportID.value = "";
+			else{
+				f.hkid.value = "";
+				f.hkid1.value = "";
+				f.hkid2.value = "";
+				f.hkidCheckDigit.value = "";
+			}
+		}
+		function ChangeSelectIdType(f) {
+
+			if (f.idTypeListIndex.selectedIndex == 1) {
+				document.getElementById("id_example").style.display = '';	
+			}
+			else {
+				document.getElementById("id_example").style.display = 'none';	
+			}
+		}
+
+		/* toggle form for using/not using digital certificate, fai 2012-12-11 */
+		function changeAuthenticateForm(f, clrform)
+		{
+				var retCertType= jsFrame.getRadioButton(f.RETCertType);
+
+				if (retCertType == "withoutCert")
+				{
+					document.getElementById("form_wcert").style.display = 'none';	
+					document.getElementById("form_wocert").style.display = '';
+
+					f.RETCertType.value = "withoutCert";
+				}
+				else
+				{
+					document.getElementById("form_wcert").style.display = '';
+					document.getElementById("form_wocert").style.display = 'none';
+
+					f.RETCertType.value = "withCert";
+				}
+
+				if (clrform) clrForm(f);
+		}
+
+		/* toggle form for authenticate by test form or identity document, fai 2012-12-11 */
+		function changeAuthenticateType(f, clrform)
+		{
+			var auth = jsFrame.getRadioButton(f.rbAuthenticateBy);
+
+			if (auth == "authenticateByTestForm")
+			{
+				document.getElementById("authByTestForm").style.display = '';
+				document.getElementById("authByID").style.display = 'none';
+				
+				document.getElementById("authByTestFormPNote").style.display = '';
+				document.getElementById("authByIDPNote").style.display = 'none';
+				f.rbAuthenticateBy.value = "authenticateByTestForm";
+			}
+			else
+			{
+				document.getElementById("authByTestForm").style.display = 'none';
+				document.getElementById("authByID").style.display = '';
+				
+				document.getElementById("authByTestFormPNote").style.display = 'none';
+				document.getElementById("authByIDPNote").style.display = '';
+				f.rbAuthenticateBy.value = "authenticateByID";
+			}
+
+			if (clrform) clrForm(f);
+		}
+
+		function clrForm(f) {
+			f.hkid.value = "";
+			f.hkid1.value = "";
+			f.hkid2.value = "";
+			f.hkidCheckDigit.value = "";
+			f.passportID.value = "";
+			f.filename.value = "";
+			f.password.value = "";
+
+			f.testFormNumForLastAttempt.value = "";
+			f.testFormBirthYear.value = "";
+			f.testFormBirthMonth.value = "";
+			f.testFormBirthDay.value = "";
+
+			f.idTypeListIndex.selectedIndex = 0;
+			f.identityNumber.value = "";
+			f.lastAttemptYear.value = "";
+			f.lastAttemptMonth.value = "";
+			f.lastAttemptDay.value = "";
+
+			f.idBirthYear.value = "";
+			f.idBirthMonth.value = "";
+			f.idBirthDay.value = "";
+		}
+
+		function hkidChanged(f)
+		{
+			var supportMultipleCertificateType = false;
+			var supportPassportID = true;
+			var supportOrganizationalCertificate = false;
+			var supportBRN = false;
+			var supportCI = false;
+
+			if (supportMultipleCertificateType) jsFrame.setRadioButton(f.certificateType, "PERSONAL");
+
+			if (supportPassportID) {
+				jsFrame.setRadioButton(f.IDType, "HKID");
+				f.passportID.value = "";
+			}
+
+			if (supportOrganizationalCertificate && supportBRN) f.brn.value = "";
+			if (supportOrganizationalCertificate && supportCI) f.ci.value = "";
+		}
+
+		function passportIDChanged(f)
+		{
+			var supportMultipleCertificateType = false;
+			var supportHKID = true;
+			var supportOrganizationalCertificate = false;
+			var supportBRN = false;
+
+			if (supportMultipleCertificateType) jsFrame.setRadioButton(f.certificateType, "PERSONAL");
+
+			if (supportHKID) {
+				jsFrame.setRadioButton(f.IDType, "PASSPORT");
+				f.hkid.value = "";
+				f.hkid1.value = "";
+				f.hkid2.value = "";
+				f.hkidCheckDigit.value = "";
+			}
+
+			if (supportOrganizationalCertificate && supportBRN) f.brn.value = "";
+		}
+		
+		function smartIDChanged(f) {
+			var supportMultipleCertificateType = false;
+			var supportPassportID = true;
+			var supportOrganizationalCertificate = false;
+			var supportBRN = false;
+			var supportCI = false;
+
+			var pwdField = document.getElementById("pwdField");
+			pwdField.style.display = "none";
+
+			var pwd=document.getElementsByName("password")[0];
+			pwd.value="";
+
+			if (supportMultipleCertificateType) jsFrame.setRadioButton(f.certificateType, "PERSONAL");
+			if (supportCI) f.ci.value = "";
+		}
+		
+		function certChanged(f) {
+			var pwdField = document.getElementById("pwdField");
+			pwdField.style.display = "";
+		}	
+
+		function brnChanged(f) {
+
+			var supportMultipleCertificateType = false;
+			var supportPassportID = true;
+			var supportOrganizationalCertificate = false;
+			var supportBRN = false;
+			var supportCI = false;
+
+			if (supportMultipleCertificateType) jsFrame.setRadioButton(f.certificateType, "ORGANIZATIONAL");
+
+			if (supportHKID) {
+				f.hkid.value = "";
+				f.hkid1.value = "";
+				f.hkid2.value = "";
+				f.hkidCheckDigit.value = "";
+			}
+
+			if (supportPassportID) f.passportID.value = "";
+
+			if (supportHKID) {
+				for (var i = 0; i < f.IDType.length; i++) {
+					f.IDType[i].checked = false;
+				}
+			}
+
+			jsFrame.setRadioButton(f.certMedia, "PKCS12");
+		}
+
+		function authenticateUser(f)
+		{
+			if (buttonPressed) return false;
+			buttonPressed = true;
+
+			var retCertType = jsFrame.getRadioButton(f.RETCertType);
+			document.forms[1].retCertType.value = retCertType;
+
+			if (retCertType == "withCert") {
+				authenticateUserWithDigitalCertificate(f);
+			}
+			else {
+				var rbAuthenticateBy = jsFrame.getRadioButton(f.rbAuthenticateBy);
+				document.forms[1].rbAuthenticateBy.value = rbAuthenticateBy;
+
+				if (rbAuthenticateBy == "authenticateByTestForm") {
+					authenticateUserWithoutDigitalCertificateByTestForm(f);
+				}
+				else {
+					authenticateUserWithoutDigitalCertificateByTestIdentityDocment(f);
+				}
+			}
+		}
+
+		function authenticateUserWithoutDigitalCertificateByTestForm(f)
+		{
+			var errorString = "";
+			var retCertType= jsFrame.getRadioButton(f.RETCertType);
+
+			document.forms[1].errorString.value = "";
+
+			var rbAuthenticateBy= jsFrame.getRadioButton(f.rbAuthenticateBy);
+
+			// testform number
+			var testFormNumForLastAttempt = document.getElementById("testFormNumForLastAttempt").value.toUpperCase();
+
+			if (testFormNumForLastAttempt=="" || 
+				testFormNumForLastAttempt==null || 
+				!testFormNumForLastAttempt.match(/[kKhHeEsS]{1}[a-zA-Z]{1}[0-9]{6}/)) {
+
+				errorString += "errors.input.testFormNumForLastAttempt.invalid;";
+			} 
+			
+			document.forms[1].LAST_ATTEMPT_TEST_FORM_NO.value = testFormNumForLastAttempt; 
+			
+			var isDateValid=true;
+
+			// year
+			var testFormBirthYear = document.getElementById("testFormBirthYear").value;
+
+			if (testFormBirthYear=="" || 
+				testFormBirthYear==null || 
+				!testFormBirthYear.match(/[0-9]{4}/) || 
+				testFormBirthYear<1000 ||
+				testFormBirthYear>=9999) {
+				errorString += "errors.input.testFormBirthYear.invalid;";
+				isDateValid=false;
+			}
+
+			document.forms[1].testFormBirthYear.value = testFormBirthYear; 
+
+			// month
+			var testFormBirthMonth = document.getElementById("testFormBirthMonth").value;
+
+			if (testFormBirthMonth=="" || 
+				testFormBirthMonth==null || 
+				!testFormBirthMonth.match(/[0-9]{1,2}/) || 
+				testFormBirthMonth<1 ||
+				testFormBirthMonth>12) {
+				errorString += "errors.input.testFormBirthMonth.invalid;";
+				isDateValid=false;
+			}
+
+			if (testFormBirthMonth=="")
+				document.forms[1].testFormBirthMonth.value = testFormBirthMonth; 
+			else
+				document.forms[1].testFormBirthMonth.value = ('0' + testFormBirthMonth).slice(-2); 
+
+			// day
+			var testFormBirthDay = document.getElementById("testFormBirthDay").value;
+
+			if (testFormBirthDay=="" || 
+				testFormBirthDay==null || 
+				!testFormBirthDay.match(/[0-9]{1,2}/) || 
+				testFormBirthDay<1 ||
+				testFormBirthDay>31) {
+
+				errorString += "errors.input.testFormBirthDay.invalid;";
+				isDateValid=false;
+			}
+			else if (!isValidDate(testFormBirthYear, testFormBirthMonth, testFormBirthDay) && isDateValid) {
+				errorString += "errors.input.testFormBirthDay.invalid;";
+				isDateValid=false;
+			}
+			else {
+				if (isDateValid) {
+					// age under 18 or over 70
+					var d1 = new Date(testFormBirthYear, testFormBirthMonth-1, testFormBirthDay);
+					var d2 = new Date();
+
+					var years = dateDiff(d1, d2) / 365.25;
+					if (years < 18) {
+						errorString += "errors.input.testFormBirthDay.under.18;";
+						isDateValid=false;
+					}
+					/* do not check over 70, fai 2013-05-30
+					else if (years >= 70) {
+						errorString += "errors.input.testFormBirthDay.over.70;";
+						isDateValid=false;
+					}
+					*/
+				}
+			}
+			
+			if (testFormBirthDay=="")
+				document.forms[1].testFormBirthDay.value = testFormBirthDay; 		
+			else
+				document.forms[1].testFormBirthDay.value = ('0' + testFormBirthDay).slice(-2); 		
+
+			if (isDateValid==true)
+				document.forms[1].DATE_OF_BIRTH.value = testFormBirthYear + ('0' + testFormBirthMonth).slice(-2) + ('0' + testFormBirthDay).slice(-2);
+
+			if (errorString.length != 0)
+			{
+				document.forms[1].errorString.value = errorString;
+				document.forms[1].submit();
+				return true;
+			}
+/*
+			if (!jsFrame.checkAppletReady())
+			{
+				alert("Please wait until the applet is loaded successfully");
+				loading = false;
+				return true;
+			}
+*/
+			document.forms[1].submit();
+			return true;
+		}
+
+		function authenticateUserWithoutDigitalCertificateByTestIdentityDocment(f)
+		{
+			var errorString = "";
+			document.forms[1].errorString.value = "";
+
+			// validate ID Type
+			var identityType = document.getElementById("idTypeListIndex").value;
+//alert(identityType);
+
+			//if (identityType=="----Please Select----") {
+			if (identityType=="0") {
+				errorString += "errors.input.idTypeListIndex.invalid;";
+			}
+			//document.forms[1].identityType.value = identityType;
+			document.forms[1].idType.value = identityType;
+
+			// validate ID Number
+			var identityNumber = document.getElementById("identityNumber").value.toUpperCase();
+			var isHKidInvalid = false;
+			// validate HKID		
+
+					var hkidCheckDigit = "";
+
+					if (identityType=="HKID") {
+						
+						var idLength = identityNumber.length;
+						var hkid1 = "";
+						var hkid2 = "";
+						var hkid = "";
+						if(idLength == 8){
+						hkid1 = identityNumber.substring(0,1);
+						hkid2 = identityNumber.substring(1,7);
+						hkid = identityNumber.substring(0,7);
+						//var hkidCheckDigit = identityNumber.substring(7,8);
+						hkidCheckDigit = identityNumber.substring(7,8);
+						}
+						if(idLength == 9){
+						hkid1 = identityNumber.substring(0,2);
+						hkid2 = identityNumber.substring(2,8);
+						hkid = identityNumber.substring(0,8);
+
+						//var hkidCheckDigit = identityNumber.substring(8,9);
+						hkidCheckDigit = identityNumber.substring(8,9);
+						}
+									
+						var char;
+			
+						if(hkid1 != null && hkid1.match(/[^a-z]+/i)){    					//hkid1 can not contain digit
+							isHKidInvalid = true;
+						}
+					
+						if(hkid2 != null && hkid2.match(/[^0-9]+/i)){    					//hkid2 can only contain digit
+							isHKidInvalid = true;
+						}
+					
+						if (hkid != "" || hkidCheckDigit != "") {
+							if (!checkHkid(hkid, hkidCheckDigit)) {
+								isHKidInvalid = true;
+							}
+						}
+
+						if(hkidCheckDigit.length <= 0) { //checkDigit missing
+							isHKidInvalid = true;
+						}
+						
+			//check valid hkid
+			if(isHKidInvalid){
+				errorString += "errors.input.identityNumber.invalid;";
+			}
+					}			
+			//else if (identityType=="PASSPORT") {
+			else {
+				if (identityNumber=="" || 
+					identityNumber==null ) {
+
+						//errorString += "errors.input.passport.invalid;";
+						errorString += "errors.input.identityNumber.invalid;";
+				}
+			}
+
+			document.forms[1].hkid.value = identityNumber;
+
+			var isDateValid=true;
+
+			// validate last driving test attempt date
+			// year
+			var lastAttemptYear = document.getElementById("lastAttemptYear").value;
+
+			if (lastAttemptYear=="" || 
+				lastAttemptYear==null || 
+				!lastAttemptYear.match(/[0-9]{4}/) || 
+				lastAttemptYear<1000 ||
+				lastAttemptYear>=9999) {
+
+				errorString += "errors.input.lastAttemptYear.invalid;";
+				isDateValid=false;
+			}
+
+			document.forms[1].lastAttemptYear.value = lastAttemptYear; 		
+
+			// month
+			var lastAttemptMonth = document.getElementById("lastAttemptMonth").value;
+
+			if (lastAttemptMonth=="" || 
+				lastAttemptMonth==null || 
+				!lastAttemptMonth.match(/[0-9]{1,2}/) || 
+				lastAttemptMonth<1 ||
+				lastAttemptMonth>12) {
+
+				errorString += "errors.input.lastAttemptMonth.invalid;";
+				isDateValid=false;
+			}
+
+			if (lastAttemptMonth=="")
+				document.forms[1].lastAttemptMonth.value = lastAttemptMonth; 		
+			else
+				document.forms[1].lastAttemptMonth.value = ('0' + lastAttemptMonth).slice(-2); 		
+
+			// day
+			var lastAttemptDay = document.getElementById("lastAttemptDay").value;
+
+			if (lastAttemptDay=="" || 
+				lastAttemptDay==null || 
+				!lastAttemptDay.match(/[0-9]{1,2}/) || 
+				lastAttemptDay<1 ||
+				lastAttemptDay>31) {
+
+				errorString += "errors.input.lastAttemptDay.invalid;";
+				isDateValid=false;
+			}
+			else if (!isValidDate(lastAttemptYear, lastAttemptMonth, lastAttemptDay) && isDateValid) {
+				errorString += "errors.input.lastAttemptDay.invalid;";
+				isDateValid=false;
+			}
+
+			if (lastAttemptDay=="")
+				document.forms[1].lastAttemptDay.value = lastAttemptDay; 		
+			else
+				document.forms[1].lastAttemptDay.value = ('0' + lastAttemptDay).slice(-2); 		
+							
+			var d1 = new Date(lastAttemptYear, lastAttemptMonth-1, lastAttemptDay);
+			var d2 = new Date();
+			var msPerDay = 1000*60*60*24;
+			
+			//var days = Math.round( (d2 - d1) / msPerDay );
+			var days = Math.floor( (d2 - d1) / msPerDay );
+			
+			/*
+			if (days < 7) {
+				errorString += "errors.input.lastAttemptDay.before.7;";
+				isDateValid=false;
+			}
+			*/
+
+			// check if lastAttemptDate > current date
+			if (isDateValid==true) {
+				if (days < 0) {
+					errorString += "errors.input.lastAttemptDay.after.today;";
+					isDateValid=false;
+				}
+			}
+
+			if (isDateValid==true)
+				document.forms[1].LAST_ATTEMPT_DATE.value = lastAttemptYear + ('0' + lastAttemptMonth).slice(-2) + ('0' + lastAttemptDay).slice(-2) ;
+
+			// validate date of birth
+			// year
+			var isBirthDateValid = true;
+
+			var idBirthYear = document.getElementById("idBirthYear").value;
+
+			if (idBirthYear=="" || 
+				idBirthYear==null || 
+				!idBirthYear.match(/[0-9]{4}/) || 
+				idBirthYear<1000 ||
+				idBirthYear>=9999) {
+				errorString += "errors.input.dateOfBirthYear.invalid;";
+				isBirthDateValid = false;
+			}
+
+			document.forms[1].idBirthYear.value = idBirthYear; 
+
+			// month
+			var idBirthMonth = document.getElementById("idBirthMonth").value;
+
+			if (idBirthMonth=="" || 
+				idBirthMonth==null || 
+				!idBirthMonth.match(/[0-9]{1,2}/) || 
+				idBirthMonth<1 ||
+				idBirthMonth>12) {
+				errorString += "errors.input.dateOfBirthMonth.invalid;";
+				isBirthDateValid = false;
+			}
+
+			if (idBirthMonth=="")
+				document.forms[1].idBirthMonth.value = idBirthMonth; 
+			else
+				document.forms[1].idBirthMonth.value = ('0' + idBirthMonth).slice(-2); 		
+
+			// day
+			var idBirthDay = document.getElementById("idBirthDay").value;
+
+			if (idBirthDay=="" || 
+				idBirthDay==null || 
+				!idBirthDay.match(/[0-9]{1,2}/) || 
+				idBirthDay<1 ||
+				idBirthDay>31) {
+
+				errorString += "errors.input.dateOfBirthDay.invalid;";
+				isBirthDateValid = false;
+			}
+			else if (!isValidDate(idBirthYear, idBirthMonth, idBirthDay) && isBirthDateValid) {
+				errorString += "errors.input.dateOfBirthDay.invalid;";
+				isBirthDateValid = false;
+			}
+			else {
+
+				if (isBirthDateValid) {
+					// age under 18 or over 70
+					var d1 = new Date(idBirthYear, idBirthMonth-1, idBirthDay);
+					var d2 = new Date();
+
+					var years = dateDiff(d1, d2) / 365.25;
+
+					if (years < 18) {
+						errorString += "errors.input.dateOfBirthDay.under.18;";
+						isBirthDateValid = false;
+					}
+					/* do not check over 70, fai 2013-05-30
+					else if (years >= 70) {
+						errorString += "errors.input.dateOfBirthDay.over.70;";
+						isBirthDateValid = false;
+					}
+					*/
+				}
+			}
+
+			if (idBirthDay=="")
+				document.forms[1].idBirthDay.value = idBirthDay; 
+			else
+				document.forms[1].idBirthDay.value = ('0' + idBirthDay).slice(-2); 		
+			
+			if (isBirthDateValid == true)
+				document.forms[1].DATE_OF_BIRTH.value = idBirthYear+ ('0' + idBirthMonth).slice(-2) + ('0' + idBirthDay).slice(-2);
+
+			// check if last attempt date > date of birth if both date are valid
+			if (isDateValid && isBirthDateValid) {
+				var dob = new Date(idBirthYear, idBirthMonth-1, idBirthDay);
+				var lastd = new Date(lastAttemptYear, lastAttemptMonth-1, lastAttemptDay);
+				if (lastd < dob) {
+					errorString += "errors.input.lastAttemptDate.smaller.than.dateOfBirth;";
+				}
+			}
+
+			if (errorString.length != 0)
+			{
+				document.forms[1].errorString.value = errorString;
+				document.forms[1].submit();
+				return true;
+			}
+
+			document.forms[1].submit();
+
+			return true;
+		}
+
+		function authenticateUserWithDigitalCertificate(f) {
+
+			var supportMultipleCertificateType = false;
+			var supportHKID = true;
+			var supportPassportID = true;
+			var supportOrganizationalCertificate = false;
+			var supportEnciphermentCertificate = false;
+			var supportServerCertificate = false;
+			var supportPersonalCertificate = true;
+			var supportBRN = false;
+			var supportCI = false;
+			var devAthenByPass = false;
+			var errorString = "";
+
+			/*
+alert("supportMultipleCertificateType = " + supportMultipleCertificateType + 
+			"\nsupportHKID = " + supportHKID +
+			"\nsupportPassportID = " + supportPassportID +
+			"\nsupportOrganizationalCertificate = " + supportOrganizationalCertificate +
+			"\nsupportEnciphermentCertificate = " + supportEnciphermentCertificate +
+			"\nsupportServerCertificate = " + supportServerCertificate +
+			"\nsupportPersonalCertificate = " + supportPersonalCertificate +
+			"\nsupportBRN = " + supportBRN +
+			"\nsupportCI = " + supportCI +
+			"\ndevAthenByPass = " + devAthenByPass +
+			"\nerrorString = " + errorString);
+			*/
+
+			var filename = jsFrame.trimStr(f.filename.value);
+			var password = jsFrame.trimStr(f.password.value);
+			var certificateType = "";
+			var idType = "";
+			var hkid = "";
+			var hkidCheckDigit = "";
+			var passportID = "";
+			var brn = "";
+			var ci = "";
+			var isHKidInvalid = false;
+			var certMedia = jsFrame.getRadioButton(f.certMedia);
+			var isSmartID = certMedia == "PKCS11";
+			var isNamePassError = false;
+
+			/*
+alert("filename = " + filename + 
+			"\npassword = " + password +
+			"\ncertificateType = " + certificateType +
+			"\nidType = " + idType +
+			"\nhkid = " + hkid +
+			"\nhkidCheckDigit = " + hkidCheckDigit +
+			"\npassportID = " + passportID +
+			"\nbrn = " + brn +
+			"\nci = " + ci +
+			"\nisHKidInvalid = " + isHKidInvalid +
+			"\ncertMedia = " + certMedia +
+			"\nisSmartID = " + isSmartID +
+			"\nisNamePassError = " + isNamePassError);
+			*/
+
+			//for upload file only.
+			if (!isSmartID) {
+				if (filename.length == 0){
+					isNamePassError	= true;
+					//errorString += "errors.input.filename.required;";
+				}
+				if (password.length == 0){
+					isNamePassError = true;
+					//errorString += "errors.input.password.required;";
+				}
+				if(isNamePassError){
+					errorString += "errors.input.filename.password.required;";
+				}
+			}
+			else {
+				var slotListIndex = jsFrame.getSelectionBox(f.slotListIndex);
+			}
+
+			if (supportMultipleCertificateType) {
+
+				certificateType = jsFrame.getRadioButton(f.certificateType);
+
+				if (certificateType == null)
+					errorString += "errors.input.certificate.type.not.selected;";
+				else
+					certificateType = jsFrame.trimStr(certificateType);
+
+			} else if (supportPersonalCertificate || supportOrganizationalCertificate || supportEnciphermentCertificate || supportServerCertificate) {
+				var certificateType = jsFrame.trimStr(f.certificateType.value);
+			}
+
+			if (supportPersonalCertificate && (supportHKID || supportPassportID)) {
+				if (certificateType == "PERSONAL") {
+					var idType = document.getElementsByName("IDType");
+					var idTypeError = true;
+					for(var i=0; i< idType.length; i++){
+						if(idType[i].checked){
+							idTypeError = false;
+						}
+					}
+					if(idTypeError){
+						errorString += "errors.input.personal.certificate.type.not.selected;";
+					}
+				
+					// validate HKID		
+					if (supportHKID) {
+						var hkid1 = document.getElementById("hkid1");
+						var hkid2 = document.getElementById("hkid2");
+						var hkid = document.getElementById("hkid");
+
+						if (hkid1 != null && hkid2 != null && hkid != null) {
+							hkid1.value = hkid1.value.toUpperCase();
+							hkid.value = hkid1.value + hkid2.value;
+						}
+					
+						hkid = jsFrame.trimStr(f.hkid.value);
+						hkidCheckDigit = jsFrame.trimStr(f.hkidCheckDigit.value).toUpperCase();
+				
+						var char;
+			
+						if(hkid1 != null && hkid1.value.match(/[^a-z]+/i)){    					//hkid1 can not contain digit
+							isHKidInvalid = true;
+						}
+					
+						if(hkid2 != null && hkid2.value.match(/[^0-9]+/i)){    					//hkid2 can only contain digit
+							isHKidInvalid = true;
+						}
+					
+						if (hkid != "" || hkidCheckDigit != "") {
+							if (!checkHkid(hkid, hkidCheckDigit)) {
+								isHKidInvalid = true;
+							}
+						}
+
+						if(hkidCheckDigit.length <= 0) { //checkDigit missing
+							isHKidInvalid = true;
+						}
+					}
+
+					if (supportPassportID) {
+						passportID = jsFrame.trimStr(f.passportID.value);
+						passportID = passportID.toUpperCase();
+					}
+
+					if (supportHKID && supportPassportID) {
+						idType = jsFrame.getRadioButton(f.IDType);
+
+						if (idType != null) idType = jsFrame.trimStr(idType);
+						else idType = jsFrame.trimStr(f.IDType.value);
+					}
+				}
+			}
+
+			if (supportOrganizationalCertificate && supportBRN) {
+				if (certificateType == "ORGANIZATIONAL") {
+					brn = jsFrame.trimStr(f.brn.value);
+					if (brn.length != 0) idType = jsFrame.IDType.BRN;
+				}
+			}
+
+			if (supportOrganizationalCertificate && supportCI) {
+				if (certificateType == "ORGANIZATIONAL") {
+					ci = jsFrame.trimStr(f.ci.value).toUpperCase();
+
+					if (ci.length != 0) {
+						idType = jsFrame.IDType.CI;
+
+					if (ci.match(/^CF/i))
+						errorString += "errors.input.ci.overseas;";
+
+					if (ci.length < 6 || ci.match(/^CPA/i))
+						errorString += "errors.input.ci.invalid;";
+					}else{
+						errorString += "errors.input.ci.required;";
+					}
+				}
+			}
+
+			//check hkid required
+			if ("HKID" == idType && hkid == "")
+				errorString += "errors.authenticator.hkid.required;";
+			//check valid hkid
+			else if(isHKidInvalid && idType == "HKID"){
+				errorString += "errors.input.hkid.invalid;";
+			}
+			
+			if ("PASSPORT" == idType && passportID == "")
+				errorString += "errors.authenticator.passport.id.required;";
+
+			//submit the form with prefill value
+
+			document.forms[1].certificateType.value = certificateType;
+			document.forms[1].errorString.value = "";
+			
+			var hkid1 = document.getElementById("hkid1");
+			var hkid2 = document.getElementById("hkid2");
+			
+			document.forms[1].hkid1.value = hkid1.value;
+			document.forms[1].hkid2.value = hkid2.value;
+
+			document.forms[1].checkDigit.value=hkidCheckDigit;
+			document.forms[1].passport.value=passportID;
+
+			//ra modified start
+			document.forms[1].idType.value=idType;
+			document.forms[1].certPath.value=document.forms[0].filename.value;
+
+			if (errorString.length != 0) {
+				document.forms[1].errorString.value = errorString;
+				document.forms[1].submit();
+				return true;
+			}
+
+			if (!jsFrame.checkAppletReady()) {
+				alert("Please wait until the applet is loaded successfully");
+				loading = false;
+				return true;
+			}
+
+			if (isSmartID) {
+				var result = jsFrame.Authenticator.initialize(jsFrame.KeyStoreType.PKCS11, dllFileName, slotListIndex);
+			} else {
+				var result = jsFrame.Authenticator.initialize(jsFrame.KeyStoreType.PKCS12);
+			}
+
+			if (result != jsFrame.ErrorCode.NO_ERROR) {
+				document.forms[1].errorString.value = jsFrame.getErrorString(result);
+				document.forms[1].submit();
+				return true;
+			}
+			
+			if (isSmartID)
+				result = jsFrame.Authenticator.loadKeyStore();
+			else {
+				//alert("file path: " + f.filename.value);
+				result = jsFrame.Authenticator.loadKeyStore(f.filename.value, f.password.value);
+				//alert("result: " + result);
+			}
+
+			if (result != jsFrame.ErrorCode.NO_ERROR) {
+				//alert(result);
+				document.forms[1].errorString.value = jsFrame.getErrorString(result);
+				document.forms[1].submit();
+				return true;
+			}
+
+			if (!isSmartID)
+				jsFrame.Authenticator.setCertificateID("");
+
+			var auxiliaryInfo = jsFrame.Authenticator.createAuxiliaryInfo();
+
+			if (certificateType != null) auxiliaryInfo.setExpectedCertificateType(certificateType);
+			if (idType != null) auxiliaryInfo.setIDType(idType);
+			if (hkid != null) auxiliaryInfo.setHKID(hkid);
+			if (hkidCheckDigit != null) auxiliaryInfo.setHKIDCheckDigit(hkidCheckDigit);
+			if (passportID != null) auxiliaryInfo.setPassportID(passportID);
+			if (brn != null) auxiliaryInfo.setBRN(brn);
+			if (ci != null) auxiliaryInfo.setCI(ci);
+
+			/*
+alert("auxiliaryInfo.certificateType = " + certificateType +
+	"\nauxiliaryInfo.idType = " + idType +
+	"\nauxiliaryInfo.hkid = " + hkid +
+	"\nauxiliaryInfo.hkidCheckDigit = " + hkidCheckDigit +
+	"\nauxiliaryInfo.passportID = " + passportID +
+	"\nauxiliaryInfo.brn = " + brn +
+	"\nauxiliaryInfo.ci = " + ci);
+	*/
+
+			
+			if (isSmartID) {
+				var certificateID = jsFrame.Authenticator.getCertificateID("###", true);
+		
+				if (certificateID == null) {
+					document.forms[1].errorString.value = "errors.applet.keystore.certificate.not.found";
+					document.forms[1].submit();
+					return true;
+				}
+		
+				var arr = new String(certificateID).split("###");
+		
+				if (arr.length == 0) {
+					document.forms[1].errorString.value = "errors.applet.keystore.certificate.not.found";
+					document.forms[1].submit();
+					return true;
+				}
+		
+				if (arr.length != 1) {
+					document.forms[2].certificateID.value = new String(certificateID);
+					document.forms[2].submit();
+					return true;
+				}
+		
+				jsFrame.Authenticator.setCertificateID(arr[0]);
+			}
+
+			result = jsFrame.Authenticator.authenticateUser(auxiliaryInfo);
+
+			if (devAthenByPass)
+				if (result != 7 && result != 4 && result != 15)
+					if (result != jsFrame.ErrorCode.NO_ERROR) {
+						document.forms[1].errorString.value = jsFrame.getErrorString(result);
+						document.forms[1].submit();
+						return true;
+					}
+
+			var certificate = jsFrame.Authenticator.getCertificate();
+
+			if (certificate == "") {
+				document.forms[1].errorString.value = jsFrame.getErrorString(jsFrame.Authenticator.getErrorCode());
+				document.forms[1].submit();
+				return true;
+			}
+
+			// checkUsage is set to false here as the signature is only used to verify the user have a valid key pair
+
+			var signature = jsFrame.Authenticator.signMessage(f.challenge.value, "SHA-1", false);
+			if (signature == "") {
+				document.forms[1].errorString.value = jsFrame.getErrorString(jsFrame.Authenticator.getErrorCode());
+				document.forms[1].submit();
+				return true;
+			}
+			
+			//alert(auxiliaryInfo.getName());
+
+			document.forms[1].certificate.value = certificate;
+			document.forms[1].signature.value = signature;
+			document.forms[1].errorString.value = "";
+
+			//ra modified start
+
+			document.forms[1].idType.value=idType;
+			document.forms[1].hkid.value=hkid;
+			document.forms[1].checkDigit.value=hkidCheckDigit;
+			document.forms[1].passport.value=passportID;
+			document.forms[1].brn.value=brn;
+			document.forms[1].ci.value=ci;
+
+			document.forms[1].hkid.value=document.forms[1].hkid.value.toUpperCase();
+
+			<!-- security fix Sept. 2009 -->
+			var IssuerDN=String(jsFrame.Authenticator.getIssuerDN());
+			var IssuerDN_Components=IssuerDN.split(",");
+			var IssuerDN_Item;
+			var Issuer="";
+			
+			for(var i =0; i < IssuerDN_Components.length; i++){
+				IssuerDN_Item=IssuerDN_Components[i].split("=");
+				if(IssuerDN_Item[0]!=null && IssuerDN_Item[1]!=null){
+					if(IssuerDN_Item[0]=="O")
+						Issuer=IssuerDN_Item[1];
+				}
+			}
+			
+			document.forms[1].issuer.value = Issuer;
+			
+			if (hkid != null && hkid.length>0) {
+				if (Issuer == "Hongkong Post") document.forms[1].signed_id_no.value=jsFrame.Authenticator.signMessage(hkid + hkidCheckDigit, "SHA-1", false);
+				else document.forms[1].signed_id_no.value=jsFrame.Authenticator.signMessage(hkid + "(" + hkidCheckDigit + ")", "SHA-1", false);
+			}
+			else if (passportID != null && passportID.length>0) document.forms[1].signed_id_no.value=jsFrame.Authenticator.signMessage(passportID, "SHA-1", false);
+			else if (ci != null && ci.length>0) document.forms[1].signed_id_no.value=jsFrame.Authenticator.signMessage(ci, "SHA-1", false);
+
+			<!--  end security fix -->
+
+			if (isSmartID) document.forms[1].certPath.value=f.slotListIndex.options[f.slotListIndex.selectedIndex].text;
+			else document.forms[1].certPath.value=f.filename.value ;
+
+			//ra modified end
+			document.forms[1].name.value=auxiliaryInfo.getName();
+
+			/*
+alert("certificate.value = " + document.forms[1].certificate.value +
+	"\nsignature.value = " + document.forms[1].signature.value +
+	"\nerrorString.value = " + document.forms[1].errorString.value +
+	"\nidType.value = " + document.forms[1].idType.value +
+	"\nhkid.value = " + document.forms[1].hkid.value +
+	"\nckDigit.value = " + document.forms[1].checkDigit.value +
+	"\npassport.value = " + document.forms[1].passport.value +
+	"\nbrn.value = " + document.forms[1].brn.value +
+	"\nci.value = " + document.forms[1].ci.value +
+	"\nissuer.value = " + document.forms[1].issuer.value +
+	"\nsigned_id_no.value = " + document.forms[1].signed_id_no.value +
+	"\ncertPath.value = " + document.forms[1].certPath.value +
+	"\nname.value = ", + document.forms[1].name.value +
+	"\nretCertType.value = ", + document.forms[1].retCertType.value);
+	*/
+
+			document.forms[1].submit();
+			
+			return true;
+		}
+
+		function setHiddenValue(){
+		}
+		
+		function enableSmartID() {
+			if (!jsFrame.checkAppletReady()) {
+				window.setTimeout(enableSmartID, 200);
+			} else {
+				var smartIDButton = document.getElementById("smartIDButton");
+				var cardReader = document.getElementById("cardReader");
+				var dllFileName = jsFrame.Authenticator.getSmartIDPKCS11LibraryPath();
+				
+				if (dllFileName==null || dllFileName.length == 0) {
+					smartIDButton.style.display = "none";
+					cardReader.style.display = "none";
+				} else {
+					var slotList = jsFrame.Authenticator.getSlotList("###", dllFileName, false);
+					if (slotList==null || slotList.length == 0) {
+						smartIDButton.style.display = "none";
+						cardReader.style.display="none";
+					} else {
+						smartIDButton.style.display = "";
+						cardReader.style.display = "";
+					}
+				}
+			}
+		}  
+		
+		function openSupportList() {
+			var win = window.open('/repoes/td-es-app517/AuthenSupportList.do', 'supportList','height=200,width=400,toolbar=no,scrollbars=no,resizable=no,menubar=no,location=no');
+			win.focus();
+		}
+		
+		//load file applet
+		function getCertPath(filepath_field) {
+		 var applet = getFileSelectorApplet()
+		 var tempPath = applet.selectFile("Please select file");
+			if (tempPath != "" ){
+				document.getElementById(filepath_field).value=tempPath;
+			}
+		}
+		
+		function getFileSelectorApplet() {
+		  var a = parent.frames["applet_container"].document.applets.FileSelectorApplet;
+		  if (a) {
+		    return a;
+		  } else {
+		    return document.embeds.FileSelectorApplet;
+		  }
+		}
+		// end load file applet
+		
+	
+	var stepNo = 1;
+	
+	var isSubmitted = false;
+	var openedWindows = new Array();
+	var idleTimer = null;
+	
+	document.oncontextmenu=new Function("return false");
+	
+	function openFAQ(){
+		window.open('/repoes/faq/app517/zh/faqMenu.html','faq','height='+(window.screen.height - 70)+',width='+window.screen.width+',toolbar=no,scrollbars=yes,resizable=yes,menubar=no');
+	}
+	
+	function openwin(href, name){
+/*		var win = null;
+		if (openedWindows[name] == null) {
+			win = window.open(href, name,'height=400,width=700,toolbar=yes,scrollbars=yes,resizable=yes,menubar=yes,location=yes');
+			openedWindows[name] = win;
+		}
+		else {
+			win = openedWindows[name];
+			win.location.href = href;
+		}
+*/
+		var win = window.open(href, name,'height=400,width=700,toolbar=yes,scrollbars=yes,resizable=yes,menubar=yes,location=yes');
+		win.focus();
+	}
+	
+	function checkSubmitted() {
+		if (!isSubmitted)
+		{
+			isSubmitted = true;
+			return true;
+		}
+		else 
+			return false;
+	}
+	
+	function idleTimeout() {
+		if (parent != null)
+			parent.location.href='/repoes/td-es-app517/Timeout.do';
+		else
+			location.href='/repoes/td-es-app517/Timeout.do';
+	}
+	
+	function closeW() {
+		if (parent != null)
+			parent.location.href='/repoes/td-es-app517/Exit.do';
+		else
+			location.href='/repoes/td-es-app517/Exit.do';
+	}
+	
+	function bodyLoad() {
+		
+		idleTimer = window.setTimeout("idleTimeout()", 1000 * 60 * 15);
+		
+		
+		window.setTimeout(enableSmartID, 200);
+		formOnLoad();
+	
+		
+		var footerString="<strong>第 {0}</strong>/ 5 步";
+		var frame = parent.frames["javascript_container"];
+		
+		//if (frame == null)
+		//	location.href = '/checkclientconfig/checkClientConfig.jsp?applicationId=TD514&language=en';
+		
+		if (stepNo > 0) {
+			var stepRow = document.getElementById("step" + stepNo + "Row");
+			if (stepRow != null)
+				stepRow.className = "stepBoxSelected";
+			var stepFooter = document.getElementById("stepsOf");
+			if (stepFooter != null)
+				stepFooter.innerHTML = footerString.replace("{0}", stepNo);
+				
+			/* set the step header */
+			var stepsHeader = document.getElementById("stepsHeader");
+			if (stepsHeader != null)
+			{
+				var stepTitleNo = "";
+				var stepTitle   = "";
+				var mandatoryRequired = false;
+				switch (stepNo)
+					{
+						case 1:
+						  stepTitleNo = "步驟一";
+						  stepTitle   = "身份核實";
+						  mandatoryRequired = true;
+						  break;
+						case 2:
+						  stepTitleNo = "步驟二";
+						  stepTitle   = "選擇車輛類別、應考地區、考試時段及考試日期";
+						  mandatoryRequired = false;
+						  break;
+						case 3:
+						  stepTitleNo = "步驟三";
+						  stepTitle   = "提交預約申請";
+						  mandatoryRequired = false;
+						  break;
+						case 4:
+						  stepTitleNo = "步驟四";
+						  stepTitle   = "付款";
+						  mandatoryRequired = false;
+						  break;
+						case 5:
+						  stepTitleNo = "步驟五";
+						  stepTitle   = "印取排期信";
+						  mandatoryRequired = false;
+						  break;
+						default:
+						  stepTitleNo = "";
+						  stepTitle   = "";
+					}
+				
+				
+				if (stepTitleNo != ""){
+					if (mandatoryRequired==true){
+						stepsHeader.innerHTML = "<div class=\"cell\">"+
+												"	<div class=\"contenttable\"> " +
+												"		<div class=\"step_hd\"> " +
+												"			<span class=\"step_no\">" + stepTitleNo + "</span> " +
+												"			<span class=\"step_info\"> " + stepTitle + "</span> " +
+												"			<span class=\"step_remark\"> 註有「<span class=\"star\">*</span>」號必須填寫 </span> " +
+												"		</div> " +
+												"	</div> " +
+										        "</div>";
+					}else{
+						stepsHeader.innerHTML = "<div class=\"cell\">"+
+												"	<div class=\"contenttable\"> " +
+												"		<div class=\"step_hd\"> " +
+												"			<span class=\"step_no\">" + stepTitleNo + "</span> " +
+												"			<span class=\"step_info\"> " + stepTitle + "</span> " +
+												"		</div> " +
+												"	</div> " +
+										        "</div>";
+					}
+				}
+			}
+			/* end set the step header */
+		}
+		
+		var inputs = document.getElementsByTagName("input");
+			
+		for (i = 0; i < inputs.length; i++) {
+			inputs[i].setAttribute("autocomplete", "off");
+			inputs[i].autocomplete = "off";
+		}
+		
+		parent.document.title = "Screen ID: SC-517-1-103";
+	}
+	
+// -->
+</script>
+<style type="text/css">
+* {
+	font-family:DFSongStd,PMingLiU,MingLiU,LiSong Pro,Serif ;
+}
+#topPanel {
+	text-align: left;
+	width:100%; height:27px;
+	margin-bottom: 20px;
+	margin-top:38px;
+	vertical-align:bottom;
+}
+#contentPanelFloat {
+	min-height: 610px;
+	background-image: url("/repoes/td-es-app517/images/bottom_border.jpg");
+}
+</style>
+</head>
+<body onload="javascript:bodyLoad();" marginwidth="0" marginheight="0">
+<div id="wrap">
+	<div id="topPanel" class="screenOnly">
+  		<div id="headerFlag"><img src="/repoes/td-es-app517/images/header.jpg" alt="GovHK 香港政府一站通"></div>
+    	<div id="navigationBar"><a href="/repoes/td-es-app517/Exit.do" target="_parent">離開</a></div>
+		<div id="headerRight"></div>
+	</div>
+		
+<!-- Modified by Eric Ng on Nov 8, 2012 - Bug Fix for Chrome Start -->
+	<div class="printOnly">
+        預約駕駛考試
+	</div>
+	
+<div id="subheader2" class="screenOnly">
+	<div class="subheader">
+        <div class="cluster">&nbsp;</div>
+        <div class="icon"><img src="./images/transport.jpg" alt="" class="icon"></div>
+        <div class="text">預約駕駛考試</div>
+	</div>	
+</div>
+<!-- Modified by Eric Ng on Nov 8, 2012 - Bug Fix for Chrome End -->
+	
+<!--<div id="midPanel" class="clearfix">-->
+        <div id="leftMenuPanel" class="screenOnly">
+            <div class="leftMenuSubPanel">
+                <div class="leftMenuPanelDimBox">
+                	
+<!-- left 步驟menu begin -->
+			<div class="leftMenuTitleSteps">
+                    <div id="step1Row" class="stepBoxSelected">
+                        <h2>步驟一</h2>
+                        身份核實
+                    </div>
+					<div id="step2Row" class="stepBoxNotSelected">
+                        <h2>步驟二</h2>
+			                   選擇車輛類別、應考地區、考試時段及考試日期
+                    </div>
+					<div id="step3Row" class="stepBoxNotSelected">
+                        <h2>步驟三</h2>
+                        	提交預約申請
+                    </div>
+					<div id="step4Row" class="stepBoxNotSelected">
+                        <h2>步驟四</h2>
+                      		 付款
+                    </div>
+					<div id="step5Row" class="stepBoxNotSelected">
+                        <h2>步驟五</h2>
+                       	印取排期信
+                    </div>
+			</div>
+<!-- left 步驟menu end -->
+                	
+<!-- left menu begins -->
+                   <div class="leftMenuTitle">
+                       <h2><a href="#" onclick="openwin('/repoes/demo/app517/zh/OnlineDemo.html', 'demo'); return false;">預覽示範</a></h2>
+                   </div>
+                   <div class="leftMenuTitle">
+                       <h2>
+            <a class="heading" href="#" onclick="openFAQ(); return false;">           
+                       常見問題</a></h2>
+                   </div>
+                   <div class="leftMenuTitle2">
+                       <h2>申請說明</h2>
+                       <h2>
+					<a href="#" onclick="javascript:openwin('http://www.td.gov.hk/tc/public_services/licences_and_permits/driving_test/index.html', 'how'); return false;">如何申請</a>
+                   		</h2>
+                   </div>
+                  	<div class="leftMenuTitle2">
+                  	<h2>查詢</h2>
+                       	請致電<span class="note fontArial">1823</span>或發送電郵至<br>
+					<a href="mailto:tellme@1823.gov.hk" rel="external" title="Contact Us" class="email">
+				tellme@1823.gov.<br>hk
+				</a>
+					</div>
+
+<!-- left menu ends -->
+                </div>
+            </div>
+        </div>
+        <div id="contentPanelFloat">
+            <div id="contentPanelFix">
+                <div id="contentPanel">
+                    
+                    <div id="stepsHeader" class="screenOnly"><div class="cell">	<div class="contenttable"> 		<div class="step_hd"> 			<span class="step_no">步驟一</span> 			<span class="step_info"> 身份核實</span> 			<span class="step_remark"> 註有「<span class="star">*</span>」號必須填寫 </span> 		</div> 	</div> </div></div>
+                    
+					
+
+		
+
+		<form name="InputForm" id="InputForm" onsubmit="return false;">
+		
+		<div class="formPanel">
+		<div class="cell">
+		<div class="pageTitle">預約重考生快期</div>
+
+		<div class="contentheadertable" style="display:none;">
+		<div class="formTitle"><span class="star">請選擇身份核實方式*</span></div>
+		<div class="formContent">
+		<table class="clientAuthenFormTable" width="100%">
+			<tbody><tr>
+				<td class="form-content adj8">
+				<table border="0" cellpadding="5" cellspacing="0" width="100%">
+					<tbody><tr>
+						<td>
+							<input type="radio" name="RETCertType" value="withoutCert" onclick="changeAuthenticateForm(this.form, true)" autocomplete="off">
+							<b>不使用</b> 個人電子證書
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="radio" name="RETCertType" value="withCert" onclick="changeAuthenticateForm(this.form, true)" autocomplete="off"> 
+							<b>使用</b> 個人電子證書
+						</td>
+					</tr>
+				</tbody></table>
+				</td>
+			</tr>
+		</tbody></table>
+		</div>
+		</div>
+
+		<div id="form_wcert" style="display:none;">
+		<div class="contenttable">
+		<div class="formTitle"><span class="star">請提交以下資料:</span></div>
+		<div class="formContent">
+		<table class="clientAuthenFormTable" width="100%">
+			<tbody><tr>
+				<td class="form-content">
+				<table cellspacing="0" cellpadding="0" width="100%" border="0">
+					<tbody><tr>
+						<td rowspan="2" valign="top" width="120px" class="adj14">
+							證書類別 <span class="star">*</span>
+						</td>
+
+						<td valign="top">
+						 
+							
+
+							
+								<input type="hidden" name="certificateType" value="PERSONAL" autocomplete="off"> 
+							
+
+						</td>
+
+						<td valign="middle" width="*">
+							個人電子證書 
+							
+							
+
+							(<a href="javascript:openSupportList()" class="link4"> 支援清單</a>)
+						</td>
+					</tr>
+
+					
+
+					<tr>
+						<td>&nbsp;</td>
+						<td width="*">
+						<table class="smallGap" border="0" width="100%" cellspacing="0" cellpadding="0">
+							<tbody><tr>
+								<td width="25px"><input type="radio" name="IDType" value="HKID" onclick="changeIDType(this.form)" autocomplete="off"></td>
+								<td width="140px">香港身份證號碼&nbsp;:&nbsp;</td> 
+								<td colspan="7">
+									<input name="hkid1" id="hkid1" type="text" size="2" maxlength="2" class="twodigit uppercase" onchange="hkidChanged(this.form)" value="" autocomplete="off">
+									<input type="text" name="hkid2" id="hkid2" size="6" maxlength="6" onchange="hkidChanged(this.form)" class="hkidMidAu" value="" autocomplete="off">
+									(<input type="text" name="hkidCheckDigit" size="1" maxlength="1" onchange="hkidChanged(this.form)" class="onedigit uppercase" value="" autocomplete="off">)
+
+									
+
+									<input type="hidden" name="hkid" id="hkid" size="8" maxlength="8" autocomplete="off">
+								</td>
+							</tr>
+
+							<tr>
+								<td width="25px">&nbsp;</td>
+								<td>例子&nbsp;:&nbsp;</td>
+								<td colspan="7"><img src="/repoes/td-es-app517/images/hkid_au_example.jpg"></td>
+							</tr>
+
+							<tr>
+								<td><input type="radio" name="IDType" value="PASSPORT" onclick="changeIDType(this.form)" autocomplete="off"></td>
+								<td colspan="2">護照號碼&nbsp;:&nbsp; </td>
+
+								<td colspan="6">
+									<input type="text" name="passportID" size="16" maxlength="30" onchange="passportIDChanged(this.form)" class="uppercase" value="" autocomplete="off">
+
+										
+								</td>
+							</tr>
+						</tbody></table>
+						</td>
+					</tr>
+
+					
+
+					
+				</tbody></table>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+				<table class="smallGap">
+					<tbody><tr>
+						<td width="120px">
+							數碼證書媒體 <span class="star">*</span>
+						</td>
+
+						<td id="smartIDButton" style="display:none;">	<!-- should be none -->
+							<input type="radio" class="radio" name="certMedia" value="PKCS11" onclick="smartIDChanged(this.form);" autocomplete="off">
+							智能身份證<br>
+							<input type="radio" class="radio" name="certMedia" value="PKCS12" onclick="certChanged(this.form);" checked="checked" autocomplete="off"> 
+							檔案
+						</td>
+
+						<td valign="bottom">
+							<div id="cardReader" style="display:none;">	<!-- should be none -->
+								智能咭閱器: 
+								<select name="slotListIndex">
+								<script language="javascript" type="text/javascript">
+								<!--
+									jsFrame.checkAppletReady()
+			
+									dllFileName = jsFrame.Authenticator.getSmartIDPKCS11LibraryPath();
+			
+									if (dllFileName.length == 0)
+										errorString = "errors.applet.smart.card.module.not.found";
+									else
+									{
+										var slotList = jsFrame.Authenticator.getSlotList("###", dllFileName, false);
+			
+										if (slotList.length == 0)
+											errorString = "errors.applet.smart.card.invalid.slot.id";
+										else
+										{
+											var arr = slotList.split("###");
+											for (var i = 0; i < arr.length; i++)
+												document.write("<option value=\"" + i + "\">" + arr[i] + "</option>\n");
+										}
+									}
+
+								//-->
+								</script>
+								</select>
+							</div>
+
+							
+								<input type="text" name="filename" size="20" id="filename" autocomplete="off"> 
+								<input type="button" name="showfilename" class="browsebutton" value="瀏覽..." onclick="getCertPath('filename');" autocomplete="off"> 
+							
+
+							
+
+							
+						</td>
+					</tr>
+				</tbody></table>
+				
+				
+				<div id="certmsg" style="display:none;">
+					<table class="smallGap">
+						<tbody><tr>
+ 							<td width="120px">&nbsp;</td>
+				            <td valign="bottom"><font color="red">如在Mac OS X無法指明數碼證書媒體的儲存位置作核立證，請參閱<a href="http://www.gov.hk/tc/about/helpdesk/faq/digitalcert/index.shtml#/q7" target="_new"><font color="red"><u>數碼證書及認證的常見問題</u><font></font></font></a></font></td>
+						</tr>
+					</tbody></table>
+				</div>								
+				<script language="javascript" type="text/javascript">
+					<!--
+					var certmsg = document.getElementById("certmsg");
+					if (navigator.userAgent.indexOf('Mac OS X') != -1) {
+					//alert('mac os');
+						if(navigator.userAgent.indexOf("Safari") != -1){
+						//alert('safari');
+						certmsg.style.display="";
+						}
+					} else {
+						//alert('not mac os');
+						certmsg.style.display="none";
+						//certmsg.style.display="";
+					}
+					//-->
+				</script>
+				
+				</td>
+			</tr>
+
+			<tr id="pwdField" style="display: block;">
+				<td>
+				<table class="smallGap">
+					<tbody><tr>
+						<td width="120px">密碼 <span class="star">*</span></td>
+						<td>
+							<input type="password" name="password" maxlength="200" size="30" autocomplete="off"> 
+							
+						</td>
+					</tr>
+				</tbody></table>
+				</td>
+			</tr>
+		</tbody></table>
+		<br>
+
+		<input type="hidden" name="challenge" value="Sun Jun 24 11:01:48 HKT 2018dVruc7aznr8CSF8GOlb2Z7P" autocomplete="off">
+		</div>
+			<div class="pointsToNote2">
+				<span class="note">
+					<div class="hightitle">注意事項:</div><br>
+					<ol>
+						<li>如選擇以個人電子證書核實身份，你可於步驟四及五繳付考試費用及確定有關考期。</li>
+						<li>請輸入你於運輸署登記的身份證明文件類別、號碼及你的個人電子證書密碼。</li>
+					</ol>
+				</span>
+			</div>	
+		</div>
+		</div>
+
+		<div id="form_wocert" style="display:normal;">
+		<div class="contenttable">
+		<div class="formTitle"><span class="star">請提交以下資料:</span></div>
+		<div class="formContent">
+		
+		<table class="clientAuthenFormTable" width="100%">
+			<tbody><tr>
+				<td class="form-content">
+				<table cellspacing="0" cellpadding="0" width="100%" border="0">
+					<tbody><tr>
+						<td>
+							<input type="radio" name="rbAuthenticateBy" value="authenticateByTestForm" onclick="changeAuthenticateType(this.form, true)" autocomplete="off"> 
+							以上次不及格的考試表格號碼核證身份
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="radio" name="rbAuthenticateBy" value="authenticateByID" onclick="changeAuthenticateType(this.form, true)" autocomplete="off"> 
+							以身份證明文件資料核證身份
+						</td>
+					</tr>
+				</tbody></table>
+				
+				<!-- new add -->
+				</td>
+				</tr>
+				</tbody></table>
+				
+				
+
+				<div id="authByTestForm">
+				<table cellspacing="0" cellpadding="0" width="100%" border="0">
+					<tbody><tr>
+						<td>上次不及格的考試表格號碼 <span class="star">*</span></td>
+						<td>
+							<input type="text" size="10" maxlength="8" name="testFormNumForLastAttempt" id="testFormNumForLastAttempt" value="HC085250" class="uppercase" autocomplete="off">
+										
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">出生日期 <span class="star">*</span></td>
+						<td>
+							<table class="example_table">
+								<tbody><tr>
+									<td colspan="7">
+										<input type="text" size="4" maxlength="4" id="testFormBirthYear" name="testFormBirthYear" onkeyup="moveOnMax(this,'testFormBirthMonth')" value="1975" autocomplete="off">
+										年
+										
+										<input type="text" size="2" maxlength="2" id="testFormBirthMonth" name="testFormBirthMonth" onkeyup="moveOnMax(this,'testFormBirthDay')" value="07" autocomplete="off">
+										月 
+										
+										<input type="text" size="2" maxlength="2" id="testFormBirthDay" name="testFormBirthDay" value="09" autocomplete="off">
+										日
+										
+									</td>
+								</tr>
+								<tr>
+									<td>例子:</td>
+									<td class="example_cell">1995</td>
+									<td>年</td>
+									<td class="example_cell">09</td>
+									<td>月</td>
+									<td class="example_cell">08</td>
+									<td>日</td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+				</tbody></table>
+				</div>
+				
+				<div id="authByID" style="display:none;"><!-- display should be none -->
+				<table cellspacing="0" cellpadding="0" width="100%" border="0">
+					<tbody><tr>
+						<td>身份證明文件類別 <span class="star">*</span></td>
+						<td>
+							<table>
+								<tbody><tr>
+									<td>
+										<select name="idTypeListIndex" id="idTypeListIndex" onchange="ChangeSelectIdType(document.getElementById('InputForm'))">
+												<option value="0">----請選擇----</option>
+												<option value="HKID">香港身分證</option>
+												<option value="PASSPORT">護照</option>
+												<option value="PRC_PERMIT">往來港澳通行証</option>
+												<option value="OTHERS">其他</option>								
+										</select>							
+										
+									</td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">身份證明文件號碼 <span class="star">*</span></td>
+						<td>
+							<table class="example_table">
+								<tbody><tr>
+									<td colspan="7">
+										<input name="identityNumber" id="identityNumber" type="text" size="32" maxlength="30" value="" class="uppercase" autocomplete="off">
+											
+									</td>
+								</tr>
+								<tr id="id_example" style="display:none">
+									<td>例子:&nbsp;&nbsp;<span class="example_cell">A2468246</span></td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">出生日期 <span class="star">*</span></td>
+
+						<td>
+						<table class="example_table">
+							<tbody><tr>
+								<td colspan="7">
+									<input type="text" size="4" maxlength="4" id="idBirthYear" name="idBirthYear" onkeyup="moveOnMax(this,'idBirthMonth')" value="" autocomplete="off">
+									年
+									
+									<input type="text" size="2" maxlength="2" id="idBirthMonth" name="idBirthMonth" onkeyup="moveOnMax(this,'idBirthDay')" value="" autocomplete="off">
+									月 
+									
+									<input type="text" size="2" maxlength="2" id="idBirthDay" name="idBirthDay" value="" autocomplete="off">
+									日
+									
+								</td>
+							</tr>
+							<tr>
+								<td>例子:</td>
+								<td class="example_cell">1995</td>
+								<td>年</td>
+								<td class="example_cell">09</td>
+								<td>月</td>
+								<td class="example_cell">08</td>
+								<td>日</td>
+							</tr>
+						</tbody></table>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">上次不及格的考試日期 <span class="star">*</span></td>
+						<td>
+							<table class="example_table">
+								<tbody><tr>
+									<td colspan="7">
+										<input type="text" size="4" maxlength="4" id="lastAttemptYear" name="lastAttemptYear" onkeyup="moveOnMax(this,'lastAttemptMonth')" value="" autocomplete="off">
+										年
+										
+										<input type="text" size="2" maxlength="2" id="lastAttemptMonth" name="lastAttemptMonth" onkeyup="moveOnMax(this,'lastAttemptDay')" value="" autocomplete="off">
+										月 
+										
+										<input type="text" size="2" maxlength="2" id="lastAttemptDay" name="lastAttemptDay" value="" autocomplete="off">
+										日
+										
+									</td>
+								</tr>
+								<tr>
+									<td>例子:</td>
+									<td class="example_cell">2008</td>
+									<td>年</td>
+									<td class="example_cell">09</td>
+									<td>月</td>
+									<td class="example_cell">08</td>
+									<td>日</td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+					
+					
+				</tbody></table>
+				</div>
+				</div>
+				
+				<div id="authByTestFormPNote" class="pointsToNote2">
+					<span class="note">
+						<div class="hightitle">注意事項:</div><br>
+						<ol>
+							<li>如不使用個人電子證書核實身份，你的預約重考生快期申請將於完成步驟三後完結，並需在繳付考試費用限期日或之前付款及確定考期。</li>
+							<li>請輸入你上次不及格的考試表格號碼及出生日期。</li>
+						</ol>
+					</span>
+				</div>	
+				
+				<div id="authByIDPNote" class="pointsToNote2" style="display:none;">
+					<span class="note">
+						<div class="hightitle">注意事項:</div><br>
+						<ol>
+							<li>如不使用個人電子證書核實身份，你的預約重考生快期申請將於完成步驟三後完結，並需在繳付考試費用限期日或之前付款及確定考期。</li>
+							<li>請輸入你於運輸署登記的身份證明文件類別、號碼、出生日期及上次不及格的考試日期。</li>
+						</ol>
+					</span>
+				</div>
+								
+		</div>
+		</div>			
+		</div>
+		</div>
+        </form>
+        
+		<form id="authenForm" method="post" action="/repoes/td-es-app517/RETAuthenticationAction.do"><div><input type="hidden" name="org.apache.struts.taglib.html.TOKEN" value="037f825baee4dc03be228bb57604161c" autocomplete="off"></div>
+			<input type="hidden" name="certificate" value="" autocomplete="off">
+			<input type="hidden" name="errorString" value="" autocomplete="off">
+			<input type="hidden" name="signature" value="" autocomplete="off">
+			<input type="hidden" name="identityType" value="" autocomplete="off">
+			<input type="hidden" name="identityNumber" value="" autocomplete="off">
+			<input type="hidden" name="testFormNumForLastAttempt" value="" autocomplete="off">
+			<input type="hidden" name="dateOfBirth" value="" autocomplete="off">
+			<input type="hidden" name="dateForLastAttempt" value="" autocomplete="off">
+
+			<!--<input type="hidden" name="rbAuthenticateBy" value="" />-->
+
+			<input type="hidden" name="testFormBirthYear" value="" autocomplete="off">
+			<input type="hidden" name="testFormBirthMonth" value="" autocomplete="off">
+			<input type="hidden" name="testFormBirthDay" value="" autocomplete="off">
+
+			<input type="hidden" name="idBirthYear" value="" autocomplete="off">
+			<input type="hidden" name="idBirthMonth" value="" autocomplete="off">
+			<input type="hidden" name="idBirthDay" value="" autocomplete="off">
+
+			<input type="hidden" name="lastAttemptYear" value="" autocomplete="off">
+			<input type="hidden" name="lastAttemptMonth" value="" autocomplete="off">
+			<input type="hidden" name="lastAttemptDay" value="" autocomplete="off">
+
+			<!--  for form prefilling -->
+			<input type="hidden" name="certificateType" value="" autocomplete="off">
+			<input type="hidden" name="hkid1" value="" autocomplete="off">
+			<input type="hidden" name="hkid2" value="" autocomplete="off">
+			<!-- end -->
+			<input type="hidden" name="method" value="file" autocomplete="off">
+			<input type="hidden" name="idType" value="" autocomplete="off">
+			<input type="hidden" name="retCertType" value="authenticateByTestForm" autocomplete="off">
+			<input type="hidden" name="rbAuthenticateBy" value="" scope="request" ignore="true" autocomplete="off">
+			<input type="hidden" name="hkid" value="" autocomplete="off">
+			<input type="hidden" name="checkDigit" value="" autocomplete="off">
+			<input type="hidden" name="passport" value="" autocomplete="off">
+			<input type="hidden" name="brn" value="" autocomplete="off">
+			<input type="hidden" name="ci" value="" autocomplete="off">
+			<input type="hidden" name="certPath" value="" autocomplete="off">
+			<input type="hidden" name="name" value="" autocomplete="off">
+
+			<input type="hidden" name="LAST_ATTEMPT_TEST_FORM_NO" value="" autocomplete="off">
+			<input type="hidden" name="DATE_OF_BIRTH" value="" autocomplete="off">
+			<input type="hidden" name="LAST_ATTEMPT_DATE" value="" autocomplete="off">
+
+			<!-- security fix Sept. 2009 -->
+			<input type="hidden" name="signed_id_no" value="" autocomplete="off">
+			<input type="hidden" name="issuer" value="" autocomplete="off">
+			<!-- end security fix -->
+			
+			
+						
+			
+				<input type="hidden" name="b7b3a908549748e78690527ca97c4abb" value="892f3a84eb88414d9739b63d3e70a815" autocomplete="off">
+			
+
+			
+			
+		</form>
+		
+	
+	                    
+	                
+		<div class="buttonPanel screenOnly clearfix">
+			<div class="item">
+				<a href="#" class="redbutton" onclick="if (checkSubmitted()) authenticateUser(document.getElementById('InputForm')); return false;">繼續</a> 
+
+				<a href="#" class="greybutton" onclick="clearForm1(document.getElementById('InputForm')); return false;">清除</a>
+			</div>
+		</div>
+	
+
+                    <div id="stepsOf" class="stepof screenOnly"><strong>第 1</strong>/ 5 步</div>
+                </div>
+            </div>
+        </div>
+<!--</div>-->
+    <div id="bottomPanel" class="screenOnly">
+	    
+
+<!-- footer begin -->
+<div id="footerLeft">
+  	<ul>
+    	<li class="navItem"><a href="#" onclick="openwin('http://www.gov.hk/tc/about/aboutus.htm', 'copyright'); return false;">關於「香港政府一站通」</a></li>
+        <li class="navItem"><a href="#" onclick="openwin('http://www.gov.hk/tc/about/copyright.htm', 'copyright'); return false;">版權告示</a></li>
+        <li class="navItem"><a href="#" onclick="openwin('http://www.gov.hk/tc/about/privacy.htm', 'privacy'); return false;">私隱政策</a></li>
+        <li class="lastItem"><a href="#" onclick="openwin('http://www.gov.hk/tc/about/disclaimer.htm', 'disclaimer'); return false;">免責聲明</a></li>
+    </ul>
+	<div class="triangle">&nbsp;</div>
+</div>
+<div id="footerRight"><a href="http://www.brandhk.gov.hk/" target="_blank"><img src="/repoes/td-es-app517/images/logo_footer_tc.gif" title="香港品牌" alt="香港品牌"></a></div>
+<!-- footer end -->	
+
+
+
+	
+
+<script type="text/javascript" language="javascript">
+<!--
+	var sessiontimeout = "50";
+	
+	if (sessiontimeout >= 1 * 60 * 25) {	// 1 * 60 * 25 = 25 minutes
+
+		if (parent != null)
+				parent.location.href='/repoes/td-es-app517/Timeout.do';
+			else
+				location.href='/repoes/td-es-app517/Timeout.do';
+	}
+
+// -->
+</script>
+	
+	</div>
+</div>
+
+
+
+
+
+
+</body></html>

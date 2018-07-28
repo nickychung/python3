@@ -1,0 +1,614 @@
+<html><head><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache"> 
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+<title>Screen ID: SC-517-1-106</title>
+<link href="/repoes/td-es-app517/css/screen.css" type="text/css" rel="stylesheet">
+<link href="/repoes/td-es-app517/css/adjustment.css" type="text/css" rel="stylesheet">
+<link href="/repoes/td-es-app517/css/print.css" type="text/css" rel="stylesheet" media="print">
+<link href="/repoes/td-es-app517/css/templateCalendar.css" type="text/css" rel="stylesheet">
+<link type="image/x-icon" rel="icon" href="http://www.gov.hk/favicon.ico">
+<link type="image/x-icon" rel="shortcut icon" href="http://www.gov.hk/favicon.ico">
+
+
+
+	
+
+<script type="text/javascript" language="javascript">
+<!--
+	var sessiontimeout = "28";
+	
+	if (sessiontimeout >= 1 * 60 * 25) {	// 1 * 60 * 25 = 25 minutes
+
+		if (parent != null)
+				parent.location.href='/repoes/td-es-app517/Timeout.do';
+			else
+				location.href='/repoes/td-es-app517/Timeout.do';
+	}
+
+// -->
+</script>
+	
+
+<script language="javascript" src="/repoes/td-es-app517/js/common.js" type="text/javascript"></script>
+<script language="javascript" src="/repoes/td-es-app517/js/functionkey.js" type="text/javascript"></script>
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+	
+	var ret_sr_sub = 0;
+		function submitForm(){
+
+		 if(ret_sr_sub==0){
+		 ret_sr_sub++;
+			document.forms[0].TEST_START_DATE.value = "08/08/2018";
+			document.forms[0].TEST_END_DATE.value = "08/08/2018";
+
+			document.forms[0].TEST_START_TIME.value = "14:00 - 16:30 ";
+			document.forms[0].TEST_END_TIME.value = "14:00 - 16:30";
+
+			document.forms[0].CHANNEL.value = "";
+			document.forms[0].LAST_ATTEMPT_DATE.value = "20180629";
+			document.forms[0].LAST_ATTEMPT_TEST_FORM_NO.value = "KC274345";
+			document.forms[0].PAYMENT_DUE_DATE.value = "";
+			document.forms[0].DE_CODE.value = "";
+			document.forms[0].TEST_PART.value = "";
+
+			document.forms[0].TEST_AREA_CODE.value = "";
+			
+			document.forms[0].TEST_FORM_NO.value = "";
+			document.forms[0].CORRLENSIND.value = "Y";
+			document.forms[0].HEARING_AIDS_IND.value = "N";
+			document.forms[0].PHY_HANDICAP_IND.value = "N";
+			document.forms[0].SPECIAL_PERSON_IND.value = "";
+
+			document.forms[0].LANGUAGE_TYPE.value = ""
+			document.forms[0].IS_HK_RESIDENT.value = "";
+			document.forms[0].LICENCE_TYPE.value = ""
+
+			document.forms[0].action = "RETSubmitReservasionGenSlipAction.do";
+			document.forms[0].submit();
+			}
+		}
+
+		function goMod(page)
+		{
+			//set dummy value into text input pin
+			//findObj("pin").value = ' ';
+
+			//check which page going to be directed to
+			findObj("pageToGo").value = page;
+
+			document.forms[0].submit();
+		}
+
+	
+	var stepNo = 3;
+	
+	var isSubmitted = false;
+	var openedWindows = new Array();
+	var idleTimer = null;
+	
+	document.oncontextmenu=new Function("return false");
+	
+	function openFAQ(){
+		window.open('/repoes/faq/app517/zh/faqMenu.html','faq','height='+(window.screen.height - 70)+',width='+window.screen.width+',toolbar=no,scrollbars=yes,resizable=yes,menubar=no');
+	}
+	
+	function openwin(href, name){
+/*		var win = null;
+		if (openedWindows[name] == null) {
+			win = window.open(href, name,'height=400,width=700,toolbar=yes,scrollbars=yes,resizable=yes,menubar=yes,location=yes');
+			openedWindows[name] = win;
+		}
+		else {
+			win = openedWindows[name];
+			win.location.href = href;
+		}
+*/
+		var win = window.open(href, name,'height=400,width=700,toolbar=yes,scrollbars=yes,resizable=yes,menubar=yes,location=yes');
+		win.focus();
+	}
+	
+	function checkSubmitted() {
+		if (!isSubmitted)
+		{
+			isSubmitted = true;
+			return true;
+		}
+		else 
+			return false;
+	}
+	
+	function idleTimeout() {
+		if (parent != null)
+			parent.location.href='/repoes/td-es-app517/Timeout.do';
+		else
+			location.href='/repoes/td-es-app517/Timeout.do';
+	}
+	
+	function closeW() {
+		if (parent != null)
+			parent.location.href='/repoes/td-es-app517/Exit.do';
+		else
+			location.href='/repoes/td-es-app517/Exit.do';
+	}
+	
+	function bodyLoad() {
+		
+		idleTimer = window.setTimeout("idleTimeout()", 1000 * 60 * 15);
+		
+		
+		
+		var footerString="<strong>第 {0}</strong>/ 5 步";
+		var frame = parent.frames["javascript_container"];
+		
+		//if (frame == null)
+		//	location.href = '/checkclientconfig/checkClientConfig.jsp?applicationId=TD514&language=en';
+		
+		if (stepNo > 0) {
+			var stepRow = document.getElementById("step" + stepNo + "Row");
+			if (stepRow != null)
+				stepRow.className = "stepBoxSelected";
+			var stepFooter = document.getElementById("stepsOf");
+			if (stepFooter != null)
+				stepFooter.innerHTML = footerString.replace("{0}", stepNo);
+				
+			/* set the step header */
+			var stepsHeader = document.getElementById("stepsHeader");
+			if (stepsHeader != null)
+			{
+				var stepTitleNo = "";
+				var stepTitle   = "";
+				var mandatoryRequired = false;
+				switch (stepNo)
+					{
+						case 1:
+						  stepTitleNo = "步驟一";
+						  stepTitle   = "身份核實";
+						  mandatoryRequired = true;
+						  break;
+						case 2:
+						  stepTitleNo = "步驟二";
+						  stepTitle   = "選擇車輛類別、應考地區、考試時段及考試日期";
+						  mandatoryRequired = false;
+						  break;
+						case 3:
+						  stepTitleNo = "步驟三";
+						  stepTitle   = "提交預約申請";
+						  mandatoryRequired = false;
+						  break;
+						case 4:
+						  stepTitleNo = "步驟四";
+						  stepTitle   = "付款";
+						  mandatoryRequired = false;
+						  break;
+						case 5:
+						  stepTitleNo = "步驟五";
+						  stepTitle   = "印取排期信";
+						  mandatoryRequired = false;
+						  break;
+						default:
+						  stepTitleNo = "";
+						  stepTitle   = "";
+					}
+				
+				
+				if (stepTitleNo != ""){
+					if (mandatoryRequired==true){
+						stepsHeader.innerHTML = "<div class=\"cell\">"+
+												"	<div class=\"contenttable\"> " +
+												"		<div class=\"step_hd\"> " +
+												"			<span class=\"step_no\">" + stepTitleNo + "</span> " +
+												"			<span class=\"step_info\"> " + stepTitle + "</span> " +
+												"			<span class=\"step_remark\"> 註有「<span class=\"star\">*</span>」號必須填寫 </span> " +
+												"		</div> " +
+												"	</div> " +
+										        "</div>";
+					}else{
+						stepsHeader.innerHTML = "<div class=\"cell\">"+
+												"	<div class=\"contenttable\"> " +
+												"		<div class=\"step_hd\"> " +
+												"			<span class=\"step_no\">" + stepTitleNo + "</span> " +
+												"			<span class=\"step_info\"> " + stepTitle + "</span> " +
+												"		</div> " +
+												"	</div> " +
+										        "</div>";
+					}
+				}
+			}
+			/* end set the step header */
+		}
+		
+		var inputs = document.getElementsByTagName("input");
+			
+		for (i = 0; i < inputs.length; i++) {
+			inputs[i].setAttribute("autocomplete", "off");
+			inputs[i].autocomplete = "off";
+		}
+		
+		parent.document.title = "Screen ID: SC-517-1-106";
+	}
+	
+// -->
+</script>
+<style type="text/css">
+* {
+	font-family:DFSongStd,PMingLiU,MingLiU,LiSong Pro,Serif ;
+}
+#topPanel {
+	text-align: left;
+	width:100%; height:27px;
+	margin-bottom: 20px;
+	margin-top:38px;
+	vertical-align:bottom;
+}
+#contentPanelFloat {
+	min-height: 610px;
+	background-image: url("/repoes/td-es-app517/images/bottom_border.jpg");
+}
+</style>
+</head>
+<body onload="javascript:bodyLoad();" marginwidth="0" marginheight="0">
+<div id="wrap">
+	<div id="topPanel" class="screenOnly">
+  		<div id="headerFlag"><img src="/repoes/td-es-app517/images/header.jpg" alt="GovHK 香港政府一站通"></div>
+    	<div id="navigationBar"><a href="/repoes/td-es-app517/Exit.do" target="_parent">離開</a></div>
+		<div id="headerRight"></div>
+	</div>
+		
+<!-- Modified by Eric Ng on Nov 8, 2012 - Bug Fix for Chrome Start -->
+	<div class="printOnly">
+        預約駕駛考試
+	</div>
+	
+<div id="subheader2" class="screenOnly">
+	<div class="subheader">
+        <div class="cluster">&nbsp;</div>
+        <div class="icon"><img src="./images/transport.jpg" alt="" class="icon"></div>
+        <div class="text">預約駕駛考試</div>
+	</div>	
+</div>
+<!-- Modified by Eric Ng on Nov 8, 2012 - Bug Fix for Chrome End -->
+	
+<!--<div id="midPanel" class="clearfix">-->
+        <div id="leftMenuPanel" class="screenOnly">
+            <div class="leftMenuSubPanel">
+                <div class="leftMenuPanelDimBox">
+                	
+<!-- left 步驟menu begin -->
+			<div class="leftMenuTitleSteps">
+                    <div id="step1Row" class="stepBoxNotSelected">
+                        <h2>步驟一</h2>
+                        身份核實
+                    </div>
+					<div id="step2Row" class="stepBoxNotSelected">
+                        <h2>步驟二</h2>
+			                   選擇車輛類別、應考地區、考試時段及考試日期
+                    </div>
+					<div id="step3Row" class="stepBoxSelected">
+                        <h2>步驟三</h2>
+                        	提交預約申請
+                    </div>
+					<div id="step4Row" class="stepBoxNotSelected">
+                        <h2>步驟四</h2>
+                      		 付款
+                    </div>
+					<div id="step5Row" class="stepBoxNotSelected">
+                        <h2>步驟五</h2>
+                       	印取排期信
+                    </div>
+			</div>
+<!-- left 步驟menu end -->
+                	
+<!-- left menu begins -->
+                   <div class="leftMenuTitle">
+                       <h2><a href="#" onclick="openwin('/repoes/demo/app517/zh/OnlineDemo.html', 'demo'); return false;">預覽示範</a></h2>
+                   </div>
+                   <div class="leftMenuTitle">
+                       <h2>
+            <a class="heading" href="#" onclick="openFAQ(); return false;">           
+                       常見問題</a></h2>
+                   </div>
+                   <div class="leftMenuTitle2">
+                       <h2>申請說明</h2>
+                       <h2>
+					<a href="#" onclick="javascript:openwin('http://www.td.gov.hk/tc/public_services/licences_and_permits/driving_test/index.html', 'how'); return false;">如何申請</a>
+                   		</h2>
+                   </div>
+                  	<div class="leftMenuTitle2">
+                  	<h2>查詢</h2>
+                       	請致電<span class="note fontArial">1823</span>或發送電郵至<br>
+					<a href="mailto:tellme@1823.gov.hk" rel="external" title="Contact Us" class="email">
+				tellme@1823.gov.<br>hk
+				</a>
+					</div>
+
+<!-- left menu ends -->
+                </div>
+            </div>
+        </div>
+        <div id="contentPanelFloat">
+            <div id="contentPanelFix">
+                <div id="contentPanel">
+                    
+                    <div id="stepsHeader" class="screenOnly"><div class="cell">	<div class="contenttable"> 		<div class="step_hd"> 			<span class="step_no">步驟三</span> 			<span class="step_info"> 提交預約申請</span> 		</div> 	</div> </div></div>
+                    
+					
+	<form name="app517Form" method="post" action="/repoes/td-es-app517/RETSubmitReservasionGenSlipAction.do"><div><input type="hidden" name="org.apache.struts.taglib.html.TOKEN" value="4c8074f69be564d0632cdaf470a61c1c" autocomplete="off"></div>
+	
+	<input type="hidden" name="pageToGo" value="" autocomplete="off">
+
+	<input type="hidden" name="TEST_AREA_CODE" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="TEST_CENTRECODE_VALUE" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="TEST_START_DATE" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="TEST_END_DATE" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="TEST_START_TIME" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="TEST_END_TIME" value="" scope="request" ignore="true" autocomplete="off">
+
+	<input type="hidden" name="TXNREFNO" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="RESERVATION_NO" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="CHANNEL" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="LAST_ATTEMPT_DATE" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="LAST_ATTEMPT_TEST_FORM_NO" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="PAYMENT_DUE_DATE" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="DE_CODE" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="TEST_PART" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="TEST_AREA_CODE" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="TEST_FORM_NO" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="CORRLENSIND" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="HEARING_AIDS_IND" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="PHY_HANDICAP_IND" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="SPECIAL_PERSON_IND" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="TEST_CENTRE_CODE" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="LANGUAGE_TYPE" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="IS_HK_RESIDENT" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="LICENCE_TYPE" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="CREATED_BY" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="CREATED_ON" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="UPDATED_BY" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="UPDATED_ON" value="" scope="request" ignore="true" autocomplete="off">
+	<input type="hidden" name="UPDATED_FUNC" value="" scope="request" ignore="true" autocomplete="off">
+	
+		<input type="hidden" name="8f52db2306b54369bc1a878b958d0dfe" value="fbdb668640fc4eefa065f3272e3b861d" autocomplete="off">
+	
+						
+	
+		<input type="hidden" name="70f5586090e34bad81bfdf9724b59a7f" value="f8e57b0147324e7a92772c4adcee6744" autocomplete="off">
+	
+
+	
+		<input type="hidden" name="b8c9d94bf1f440e29263a46f34caf33c" value="62ebed985a6f47f5bbac73a17edcc948" autocomplete="off">
+	
+	
+		<div class="formPanel">
+			<div class="cell">
+				<div class="pageTitle">預約重考生快期</div>
+			</div>
+
+			<div class="cell">
+				<div class="contenttable">
+					<div class="formTitle">申請人資料</div>
+						<div class="formContent">
+					        <table border="0" cellspacing="0" cellpadding="5" width="100%">
+
+								 
+
+								
+									<tbody><tr>
+										<td width="230px">上次不及格的考試表格號碼</td>
+										<td width="*">
+											KC274345
+										</td>
+									</tr>
+									<tr>
+										<td width="230px">出生日期 (日/月/年)</td>
+										<td width="*">
+											09/07/1975
+										</td>
+									</tr>
+								 
+
+								 
+
+								<tr>
+									<td width="230px">日間聯絡電話號碼 <span class="star"></span></td>
+									<td width="*">
+										94063065
+										
+									</td>
+								</tr>
+
+								<tr>
+									<td width="230px">駕駛時須戴眼鏡或矯正視力的鏡片 <span class="star"></span></td>
+									<td width="*">
+										是 
+										 
+										
+									</td>
+								</tr>
+
+								<tr>
+									<td width="230px">駕駛時須戴助聽器 <span class="star"></span></td>
+									<td width="*">
+										 
+										否 
+										
+									</td>
+								</tr>
+								<tr>
+									<td width="230px">身體有傷殘<br>（如四肢不全或手足活動不靈） <span class="star"></span></td>
+									<td width="*">
+										 
+										否 
+										
+									</td>
+								</tr>
+							</tbody></table>
+						</div>
+						<br>
+						
+						<div class="formContentButton clearfix">
+						<div class="item">
+							<a onclick="javascript:goMod('RETInputVehDetails')" class="greybutton" href="#"> 修改</a>
+						</div>
+					</div>
+				</div>
+			</div>
+	    
+			<div class="cell">
+				<div class="contenttable">
+					<div class="formTitle">重考生快期預約詳情</div>
+					<div class="formContent">
+						<table border="0" cellspacing="0" cellpadding="5" width="98%">
+							<tbody><tr>
+								<td width="230px"> 車輛類別 <span class="star"></span></td>
+								<td width="*">私家車</td>
+							</tr>
+							
+							<tr>
+								<td width="230px">應考部份 <span class="star"></span></td>
+								<td width="*">丙部試</td>
+							</tr>
+							
+							<tr>
+								<td width="230px">應考地區 <span class="star"></span></td>
+								<td width="*">九龍及新界</td>
+							</tr>                
+
+							<tr>
+								<td width="230px">考試日期 (日/月/年) <span class="star"></span></td>
+								<td width="*">08/08/2018</td>
+							</tr>                
+
+							<tr>
+								<td width="230px">考試時段 <span class="star"></span></td>
+								<td width="*">14:00 - 16:30</td>
+							</tr>                
+						</tbody></table>
+				    </div>
+
+					<br>
+						
+					<div class="formContentButton clearfix">
+					<div class="item">
+						<a onclick="javascript:goMod('RETCalendar')" class="greybutton" href="#"> 修改</a>
+					</div>
+					</div>	
+				</div>
+			</div>
+			
+			<div class="pointsToNote2">
+				<span class="note">
+					<div class="hightitle">重要注意事項:</div><br>
+					<ol>
+						<li>請覆核你的「申請人資料」及「重考生快期預約詳情」，並按「確認及遞交預約」以確認及遞交你的預約；<b>一旦按鍵，即表示你已覆核及確認了預約，本署會視之為已確認的預約</b>。系統會隨即記錄你遞交的預約，如有任何爭議，將以本署系統紀錄為準。</li>
+						<li>成功預約重考生快期後，申請人需在繳付考試費用限期日（即由申請日起計第2個工作天）或之前以有效的個人電子證書登入香港政府一站通網上預約駕駛考試網頁<a href="http://www.gov.hk/drivingtest">(www.gov.hk/drivingtest)</a>或於辦公時間內 (星期一至五，上午9時至下午5時，公眾假期除外) 親身或由代辦人到指定的牌照事務處，帶同下列文件確認考期並繳付考試費用：<ol><li>申請人的身份證明文件的正本或副本、</li><li>已填妥及附有申請人正本親筆簽署的駕駛考試申請表（非商用車輛TD82／商用車輛TD321）及其指明的所需文件，包括最近三個月發出的現時住址證明（住址及通訊地址）正本或副本（如水電煤或電訊公司收費單、銀行、保險公司、政府部門、本地大學、國際或本地註冊的慈善機構發出的文件）、</li><li>申請駕駛考試的應繳費用及</li><li>已填妥及附有申請人正本親筆簽署的「確認已預約重考生快期授權信」列印本（只適用由代辦人確認的申請，授權信可於本系統網頁下載及列印）</li></ol>如申請人親身確認考期，其駕駛考試申請表格將會被蓋上「我確認此乃本人預約重考生快期之申請」的印章，申請人須在印章上簽署以作確認。</li>
+						<li>如未能在繳費限期日或之前付款及確定考期，有關重考生快期預約將被取消，而申請人於<b>隨後的30個曆日內</b>將不能申請任何車輛類別的重考生快期。</li>
+						<li>成功預約重考生快期後，如尚未繳付考試費用，申請人可在繳費限期日或之前，取消有關重考生快期預約。惟申請人只可就每個車輛類別的重考生快期作出<b><u>一次</u></b>取消預約。重考生快期不能轉讓。</li>
+						<li>一旦繳付考試費用及確定考期，除健康理由外，有關考期一概不能更改。如因健康理由申請延期，亦只會獲編配候試名單之末的考期。</li>
+					</ol>
+					確認及遞交預約前，請再次參閱「<a href="http://www.td.gov.hk/filemanager/tc/content_110/repeater_early_test_appointment_booking_service_notes_to_candidates_chi.pdf" target="_new1">重考生快期預約須知</a>」更多關於重考生快期預約的注意事項。
+				</span>
+			</div>
+			<br>
+			<div class="cell">
+				<div class="contenttable">
+					<div class="row">
+						
+							<input type="hidden" name="77bf642a129144b3b8187bfeabe2983e" value="" autocomplete="off">
+						
+						
+						
+							<input type="hidden" name="1329aec4388744bf91170e16a095e047" value="" autocomplete="off">
+						
+						
+						
+							<input type="hidden" name="0bbc554deb654aafaf01f7edabf6b8ed" value="" autocomplete="off">
+						
+						<input name="ec83f2c3840b4f9e878360ab6b78a9f7" type="checkbox" value="on" autocomplete="off">
+						本人確認及遞交預約前已詳閱、明白並願意遵守以上所載的條款及條件。
+						
+						
+							<input type="hidden" name="f0771ef45acd4006895376199b53766f" value="" autocomplete="off">
+						
+						
+							<input type="hidden" name="9e814c2405a14cfca35f936d513d8c71" value="" autocomplete="off">
+						
+						
+						
+						
+							<input type="hidden" name="8889992ca7db48449f043997eb4c07e3" value="" autocomplete="off">
+						
+					</div>
+				</div>
+			</div>
+			
+		</div>
+
+	</form>
+
+	
+	                    
+	                
+        <div class="buttonPanel screenOnly clearfix">
+		<div class="item">
+		<a href="#" class="redbutton" onclick="submitForm(); return false;">確認及遞交預約</a> 
+		</div>
+		</div>
+	
+
+                    <div id="stepsOf" class="stepof screenOnly"><strong>第 3</strong>/ 5 步</div>
+                </div>
+            </div>
+        </div>
+<!--</div>-->
+    <div id="bottomPanel" class="screenOnly">
+	    
+
+<!-- footer begin -->
+<div id="footerLeft">
+  	<ul>
+    	<li class="navItem"><a href="#" onclick="openwin('http://www.gov.hk/tc/about/aboutus.htm', 'copyright'); return false;">關於「香港政府一站通」</a></li>
+        <li class="navItem"><a href="#" onclick="openwin('http://www.gov.hk/tc/about/copyright.htm', 'copyright'); return false;">版權告示</a></li>
+        <li class="navItem"><a href="#" onclick="openwin('http://www.gov.hk/tc/about/privacy.htm', 'privacy'); return false;">私隱政策</a></li>
+        <li class="lastItem"><a href="#" onclick="openwin('http://www.gov.hk/tc/about/disclaimer.htm', 'disclaimer'); return false;">免責聲明</a></li>
+    </ul>
+	<div class="triangle">&nbsp;</div>
+</div>
+<div id="footerRight"><a href="http://www.brandhk.gov.hk/" target="_blank"><img src="/repoes/td-es-app517/images/logo_footer_tc.gif" title="香港品牌" alt="香港品牌"></a></div>
+<!-- footer end -->	
+
+
+
+	
+
+<script type="text/javascript" language="javascript">
+<!--
+	var sessiontimeout = "28";
+	
+	if (sessiontimeout >= 1 * 60 * 25) {	// 1 * 60 * 25 = 25 minutes
+
+		if (parent != null)
+				parent.location.href='/repoes/td-es-app517/Timeout.do';
+			else
+				location.href='/repoes/td-es-app517/Timeout.do';
+	}
+
+// -->
+</script>
+	
+	</div>
+</div>
+
+
+
+
+
+
+
+</body></html>

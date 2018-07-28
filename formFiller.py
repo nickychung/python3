@@ -8,7 +8,7 @@ import sys
 import platform
 import time
 from multiprocessing.connection import FAILURE
-from _msi import PID_LASTAUTHOR
+#from _msi import PID_LASTAUTHOR
 
 print("Python EXE     : " + sys.executable)
 print("Architecture   : " + platform.architecture()[0])
@@ -60,15 +60,16 @@ def get_captcha(driver, element, path):
     # uses PIL library to open image in memory
     image = Image.open(path)
     left = location['x']
-    #top = location['y']
-    top = 530
+    top = location['y']
+    #print(top)
+    top = 1530
     right = location['x'] + size['width']
     #bottom = location['y'] + size['height']
-    bottom = 530 + 75
+    bottom = 1530 + 75
     image = image.crop((left, top, right, bottom))  # defines crop points
     print(image)
-    
-    
+
+
     #ap = argparse.ArgumentParser()
     #ap.add_argument("-i", "--image", required=True,
     #help="path to input image to be OCR'd")
@@ -82,7 +83,7 @@ def get_captcha(driver, element, path):
     
     #filename = "{}.png".format(os.getpid())
     #image.save(filename)
-    #image.show()
+    image.show()
 
     return image
     #image.save(path, 'png')  # saves new cropped image
@@ -143,7 +144,6 @@ def call_page_one():
             dv.close()
             sys.exit
             return False
-            
     return dv
 #elem = driver.find_element_by_name("serviceChoice")
 
@@ -170,7 +170,7 @@ try:
                 print("max:{}".format(maxRetry) + " retries")
         retries = retries + 1
         #driver.set_network_conditions(latency=500,download_throughput=0.1 * 1024,upload_throughput=0.1 * 1024) #NETWORK THROTTLING in kb/s
-        
+
         if(retries >= maxRetry):
             print("entering page 3")
             try:
@@ -182,20 +182,20 @@ try:
                 driver = call_page_one()
                 if(p3retries <= maxRetry):
                     retries = 1
-                p3retries = p3retries + 1    
-                print("2 Loading took too much time!")   
-    
-    
+                p3retries = p3retries + 1
+                print("2 Loading took too much time!")
+
+
     #driver.set_network_conditions(latency=500,download_throughput=1 * 1024,upload_throughput=1 * 1024) #NETWORK THROTTLING in kb/s
 
 
     if(driver):
-        for x in range(19): 
+        for x in range(1):
             if(fluent_wait_page_four(driver, 0.5) == 1):
-                
+
                 driver.switch_to.frame(driver.find_element_by_name('main'))
                 print("page 4 starts...")
-                
+
                 WebDriverWait(driver,10).until(EC.presence_of_element_located((By.ID,'testFormNumForLastAttempt')))
                 try:
                 #driver.find_element_by_xpath("//div[@class='pageTitle'][contains(text(),'預約重考生快期')]")
@@ -204,7 +204,7 @@ try:
                     driver.find_element_by_id('testFormBirthMonth').send_keys(bmonth)
                     driver.find_element_by_id('testFormBirthDay').send_keys(bday)
                     driver.find_element_by_link_text("繼續").click()
-            
+
                     driver.find_element_by_name('telephoneNo').send_keys(teleNo)
                     if(wearClasses):
                         driver.find_element_by_css_selector("input[type='radio'][name='wearLensesInd'][value='Y']").click()
@@ -212,10 +212,10 @@ try:
                         driver.find_element_by_css_selector("input[type='radio'][name='wearLensesInd'][value='N']").click()
                     driver.find_element_by_css_selector("input[type='radio'][name='wearAidsInd'][value='N']").click()
                     driver.find_element_by_css_selector("input[type='radio'][name='physicalHandicapInd'][value='N']").click()
-                    driver.find_element_by_link_text("繼續").click()     
+                    driver.find_element_by_link_text("繼續").click()
                 except TimeoutException:
-                    driver.quit()    
-                break                                                                            
+                    driver.quit()
+                break
             else:
                 imgs = driver.find_elements_by_tag_name("img") #find the captcha image element and store it in parameter img
                 for img in imgs:
@@ -223,7 +223,7 @@ try:
                     if "jcaptcha" in img_src:
                         myCaptcha = img
                         print(img_src)
-                        break                                                                 
+                        break
                 driver.find_element_by_css_selector("input[type='checkbox'][value='on']").click()
                 driver.find_element_by_tag_name('body').send_keys(Keys.PAGE_DOWN)
                 try_captcha(driver, myCaptcha)
